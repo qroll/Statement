@@ -3,13 +3,11 @@ package com.qwissroll.statement.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.qwissroll.statement.R;
-import com.qwissroll.statement.DashboardItemTag;
 
 /**
  * Created by qruol on 22/3/2017.

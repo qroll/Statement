@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.qwissroll.statement.StyleActivity"
+    tools:context="com.qwissroll.statement.activity.StyleActivity"
     tools:showIn="@layout/activity_style">
 
     <com.qwissroll.statement.view.TagTokenTextView

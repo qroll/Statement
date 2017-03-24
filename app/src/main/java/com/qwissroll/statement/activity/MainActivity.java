@@ -1,4 +1,4 @@
-package com.qwissroll.statement;
+package com.qwissroll.statement.activity;
 
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
+import com.qwissroll.statement.R;
 import com.qwissroll.statement.view.DashboardItem;
+import com.qwissroll.statement.view.DashboardItemTag;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openStyleActivity(View view) {
         Intent intent = new Intent(this, StyleActivity.class);
+        startActivityForResult(intent, 1);
+    }
+
+    public void openSearchActivity(View view) {
+        Intent intent = new Intent(this, SearchActivity.class);
         startActivityForResult(intent, 1);
     }
 

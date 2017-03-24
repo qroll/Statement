@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.qwissroll.statement.DashboardItemTag;
 import com.qwissroll.statement.R;
 
 /**

@@ -1,6 +1,4 @@
-package com.qwissroll.statement;
-
-import com.qwissroll.statement.view.DashboardItem;
+package com.qwissroll.statement.view;
 
 /**
  * Created by qruol on 23/3/2017.

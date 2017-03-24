@@ -1,4 +1,4 @@
-package com.qwissroll.statement;
+package com.qwissroll.statement.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.qwissroll.statement.R;
 
 public class ImageDetailActivity extends AppCompatActivity {
 
