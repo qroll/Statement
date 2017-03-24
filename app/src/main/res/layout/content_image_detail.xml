@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:TagsEditText="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,18 +23,6 @@
             android:id="@+id/commentInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-        <mabbas007.tagsedittext.TagsEditText
-            android:id="@+id/tagsEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            TagsEditText:allowSpaceInTag="true"
-            TagsEditText:tagsBackground="@drawable/square"
-            TagsEditText:tagsCloseImageLeft="@drawable/dot"
-            TagsEditText:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
-            TagsEditText:tagsCloseImageRight="@drawable/tag_close"
-            TagsEditText:tagsTextColor="@android:color/black"
-            TagsEditText:tagsTextSize="@dimen/defaultTagsTextSize" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
