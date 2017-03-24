@@ -6,7 +6,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -35,7 +34,7 @@ public class ImageDetailActivity extends AppCompatActivity {
         Intent i = getIntent();
 
         int itemId = i.getIntExtra("itemId", 0);
-        TextView text = (TextView) findViewById(R.id.text);
+        TextView text = (TextView) findViewById(R.id.testText);
         text.setText("You selected " + itemId);
 
         String imageSource = "ootd_" + itemId;
@@ -45,7 +44,7 @@ public class ImageDetailActivity extends AppCompatActivity {
 
         boolean isComment = i.getBooleanExtra("isComment", false);
         if (isComment) {
-            EditText input = (EditText) findViewById(R.id.input);
+            EditText input = (EditText) findViewById(R.id.commentInput);
             input.requestFocus();
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
