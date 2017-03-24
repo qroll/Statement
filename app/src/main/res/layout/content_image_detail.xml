@@ -25,6 +25,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <mabbas007.tagsedittext.TagsEditText
+            android:id="@+id/tagsEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            TagsEditText:allowSpaceInTag="true"
+            TagsEditText:tagsBackground="@drawable/square"
+            TagsEditText:tagsCloseImageLeft="@drawable/dot"
+            TagsEditText:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+            TagsEditText:tagsCloseImageRight="@drawable/tag_close"
+            TagsEditText:tagsTextColor="@android:color/black"
+            TagsEditText:tagsTextSize="@dimen/defaultTagsTextSize" />
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
