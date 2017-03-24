@@ -12,6 +12,9 @@ import com.qwissroll.statement.FirstStyleFragment;
 import com.qwissroll.statement.R;
 import com.qwissroll.statement.SecondStyleFragment;
 
+import com.rd.PageIndicatorView;
+import com.rd.animation.AnimationType;
+
 public class StyleActivity extends AppCompatActivity {
 
     @Override
@@ -24,6 +27,10 @@ public class StyleActivity extends AppCompatActivity {
 
         ViewPager pager = (ViewPager) findViewById(R.id.viewPager);
         pager.setAdapter(new StylePagerAdapter(getSupportFragmentManager()));
+
+        PageIndicatorView pageIndicatorView = (PageIndicatorView) findViewById(R.id.pageIndicatorView);
+        pageIndicatorView.setViewPager(pager);
+        pageIndicatorView.setAnimationType(AnimationType.DROP);
     }
 
     private class StylePagerAdapter extends FragmentPagerAdapter {

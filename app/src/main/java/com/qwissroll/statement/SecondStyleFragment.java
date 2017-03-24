@@ -15,7 +15,7 @@ public class SecondStyleFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.style_page_1, container, false);
+        View view = inflater.inflate(R.layout.style_page_2, container, false);
 
         TextView textView = (TextView) view.findViewById(R.id.textView);
         textView.setText(getArguments().getString("msg"));
