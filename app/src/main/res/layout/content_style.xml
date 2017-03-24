@@ -11,6 +11,8 @@
     <com.qwissroll.statement.view.TagTokenTextView
         android:id="@+id/tagView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:inputType="textAutoCorrect"
+        android:imeOptions="actionDone"/>
 
 </android.support.constraint.ConstraintLayout>
