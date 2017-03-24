@@ -1,24 +1,18 @@
 package com.qwissroll.statement.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
+import com.qwissroll.statement.FirstStyleFragment;
 import com.qwissroll.statement.R;
-import com.qwissroll.statement.view.TagTokenTextView;
+import com.qwissroll.statement.SecondStyleFragment;
 
 public class StyleActivity extends AppCompatActivity {
-
-    TagTokenTextView tagView;
-    String[] tags;
-    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,25 +22,32 @@ public class StyleActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        tags = new String[]{"cupcake", "donut", "eclair", "froyo", "gingerbread", "honeycomb",
-                "icecream sandwich", "jellybean", "kitkat", "lollipop", "marshmallow", "nougat"};
+        ViewPager pager = (ViewPager) findViewById(R.id.viewPager);
+        pager.setAdapter(new StylePagerAdapter(getSupportFragmentManager()));
+    }
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tags);
+    private class StylePagerAdapter extends FragmentPagerAdapter {
 
-        tagView = (TagTokenTextView)findViewById(R.id.tagView);
-        tagView.setAdapter(adapter);
+        public StylePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
-        tagView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    final TagTokenTextView tac = (TagTokenTextView) v;
-                    tac.performCompletion();
-                    return true;
-                }
-
-                return false;
+        @Override
+        public Fragment getItem(int pos) {
+            switch(pos) {
+                case 0:
+                    return FirstStyleFragment.newInstance("FirstStyleFragment, Instance 1");
+                case 1:
+                    return SecondStyleFragment.newInstance("SecondStyleFragment, Instance 1");
+                default:
+                    return FirstStyleFragment.newInstance("FirstFragment, Default");
             }
-        });
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
     }
 
 }
