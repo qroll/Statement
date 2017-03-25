@@ -6,26 +6,12 @@
     android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dashboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.qwissroll.statement.view.DashboardItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            labelValue:value="1" />
-
-        <com.qwissroll.statement.view.DashboardItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            labelValue:value="2" />
-
-        <com.qwissroll.statement.view.DashboardItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            labelValue:value="3" />
-
-    </LinearLayout>
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.v4.widget.NestedScrollView>

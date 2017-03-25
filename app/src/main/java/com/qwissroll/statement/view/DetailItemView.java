@@ -8,20 +8,21 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.qwissroll.statement.R;
+import com.qwissroll.statement.pojo.DashboardItemTag;
 
 /**
  * Created by qruol on 22/3/2017.
  */
 
-public class DetailItem extends RelativeLayout {
+public class DetailItemView extends RelativeLayout {
 
-    public DetailItem(final Context context, final AttributeSet attrs) {
+    public DetailItemView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.item_detail, this, true);
 
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.labelValue, 0, 0);
         int itemId = Integer.parseInt(array.getString(R.styleable.labelValue_value));
-        DashboardItemTag tag = new DashboardItemTag(itemId);
+        DashboardItemTag tag = new DashboardItemTag(itemId, false);
         setTag(tag);
 
         String imageSource = "ootd_" + itemId;

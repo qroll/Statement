@@ -1,19 +1,27 @@
 package com.qwissroll.statement.activity;
 
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.qwissroll.statement.DashboardItemAdapter;
 import com.qwissroll.statement.R;
-import com.qwissroll.statement.view.DashboardItem;
-import com.qwissroll.statement.view.DashboardItemTag;
+import com.qwissroll.statement.data.OutfitDataManager;
+import com.qwissroll.statement.pojo.DashboardItemTag;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements DashboardItemAdapter.ItemClickListener {
+
+    DashboardItemAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +30,52 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(!prefs.getBoolean("firstTime", false)) {
+            // run your one time code
+            Toast toast = Toast.makeText(getApplicationContext(), "Hello toast!", Toast.LENGTH_SHORT);
+            toast.show();
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("firstTime", true);
+            editor.commit();
+        }
+
+        OutfitDataManager outfitDataManager = new OutfitDataManager();
+        ArrayList<DashboardItemTag> dashboardItems = outfitDataManager.getAll();
+
+        RecyclerView dashboard = (RecyclerView) findViewById(R.id.dashboard);
+        adapter = new DashboardItemAdapter(dashboardItems);
+        adapter.setClickListener(this);
+        dashboard.setLayoutManager(new LinearLayoutManager(this));
+        dashboard.setAdapter(adapter);
+        dashboard.setNestedScrollingEnabled(false);
+    }
+
+    @Override
+    public void onItemImageClick(View view, int position) {
+        Intent intent = new Intent(this, ImageDetailActivity.class);
+
+        int itemId = position + 1;
+        intent.putExtra("itemId", itemId);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onItemLikeClick(View view, int position) {
+        DashboardItemTag tag = adapter.getItem(position);
+        tag.setSelected(!tag.isSelected());
+    }
+
+    @Override
+    public void onItemCommentClick(View view, int position) {
+        Intent intent = new Intent(this, ImageDetailActivity.class);
+
+        int itemId = position + 1;
+        intent.putExtra("itemId", itemId);
+        intent.putExtra("isComment", true);
+        startActivityForResult(intent, 1);
     }
 
     public void openStyleActivity(View view) {
@@ -32,46 +86,6 @@ public class MainActivity extends AppCompatActivity {
     public void openSearchActivity(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivityForResult(intent, 1);
-    }
-
-    public void viewImageDetails(View view) {
-        Intent intent = new Intent(this, ImageDetailActivity.class);
-
-        DashboardItem parentView = (DashboardItem)((RelativeLayout) view.getParent()).getParent();
-        DashboardItemTag tag = (DashboardItemTag) parentView.getTag();
-
-        int itemId = tag.getItemId();
-        intent.putExtra("itemId", itemId);
-        startActivityForResult(intent, 1);
-    }
-
-    public void commentImage(View view) {
-        Intent intent = new Intent(this, ImageDetailActivity.class);
-
-        DashboardItem parentView = (DashboardItem)((RelativeLayout) view.getParent()).getParent();
-        DashboardItemTag tag = (DashboardItemTag) parentView.getTag();
-
-        int itemId = tag.getItemId();
-        intent.putExtra("itemId", itemId);
-        intent.putExtra("isComment", true);
-        startActivityForResult(intent, 1);
-    }
-
-    public void likeImage(View view) {
-        ImageButton likeButton = (ImageButton) view;
-
-        DashboardItem parentView = (DashboardItem)((RelativeLayout) likeButton.getParent()).getParent();
-        DashboardItemTag tag = (DashboardItemTag) parentView.getTag();
-
-        if (tag.isSelected()) {
-            tag.setSelected(false);
-            int grey = ContextCompat.getColor(getApplicationContext(), R.color.colorGrey);
-            likeButton.setColorFilter(grey);
-        } else {
-            tag.setSelected(true);
-            int like = ContextCompat.getColor(getApplicationContext(), R.color.colorLike);
-            likeButton.setColorFilter(like);
-        }
     }
 
 }

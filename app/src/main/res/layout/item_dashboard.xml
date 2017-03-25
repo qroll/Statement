@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <com.qwissroll.statement.view.SquareImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:cropToPadding="false"
-        android:onClick="viewImageDetails"
         android:scaleType="centerCrop" />
 
     <ImageButton
@@ -19,19 +18,18 @@
         android:layout_below="@id/image"
         android:layout_margin="8dp"
         android:background="?android:selectableItemBackgroundBorderless"
-        android:onClick="likeImage"
         android:scaleType="fitXY"
         android:src="@drawable/ic_action_favorite"
-        android:tint="@color/colorGrey" />
+        android:tint="@drawable/icon_like_background" />
 
     <ImageButton
+        android:id="@+id/button_comment"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_below="@id/image"
         android:layout_margin="8dp"
         android:layout_toLeftOf="@id/button_like"
         android:background="?android:selectableItemBackgroundBorderless"
-        android:onClick="commentImage"
         android:scaleType="fitXY"
         android:src="@drawable/ic_action_mode_comment"
         android:tint="@color/colorGrey" />

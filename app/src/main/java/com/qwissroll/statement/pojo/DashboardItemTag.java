@@ -1,4 +1,4 @@
-package com.qwissroll.statement.view;
+package com.qwissroll.statement.pojo;
 
 /**
  * Created by qruol on 23/3/2017.
@@ -14,8 +14,8 @@ public class DashboardItemTag {
         itemId = 0;
     }
 
-    public DashboardItemTag(int id) {
-        isSelected = false;
+    public DashboardItemTag(int id, boolean _isSelected) {
+        isSelected = _isSelected;
         itemId = id;
     }
 
