@@ -2,7 +2,6 @@ package com.qwissroll.statement;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +47,7 @@ public class DetailItemAdapter extends RecyclerView.Adapter<DetailItemAdapter.Vi
             if (mClickListener != null) {
                 mClickListener.onItemClick(view, getAdapterPosition());
                 DetailItem item = mTags.get(getAdapterPosition());
-                mButtonAdd.setSelected(item.isAdded());
+                mButtonAdd.setText(item.isAdded() ? "Added to wishlist" : "Add to wishlist");
             }
         }
     }
@@ -78,7 +77,6 @@ public class DetailItemAdapter extends RecyclerView.Adapter<DetailItemAdapter.Vi
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.d("!!!INFO", "pos " + position);
         Context context = holder.mImageView.getContext();
         DetailItem tag = mTags.get(position);
         // set image
