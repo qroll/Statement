@@ -26,38 +26,12 @@
             android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
             android:imeOptions="actionDone"/>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/productList"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/productImage"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="12dp"
-                android:layout_marginStart="12dp"
-                app:srcCompat="@drawable/p300x300" />
-
-            <TextView
-                android:id="@+id/productText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_toRightOf="@id/productImage"
-                android:text="Bla bla bla" />
-
-            <Button
-                android:id="@+id/productButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/productText"
-                android:layout_margin="16dp"
-                android:layout_toRightOf="@+id/productImage"
-                android:text="Button" />
-        </RelativeLayout>
-
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

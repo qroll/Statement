@@ -5,16 +5,26 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.qwissroll.statement.DetailItemAdapter;
 import com.qwissroll.statement.R;
+import com.qwissroll.statement.data.ProductDataManager;
+import com.qwissroll.statement.pojo.DetailItem;
 
-public class ImageDetailActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class ImageDetailActivity extends AppCompatActivity implements DetailItemAdapter.ItemClickListener {
+
+    DetailItemAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +54,16 @@ public class ImageDetailActivity extends AppCompatActivity {
         ImageView image = (ImageView) findViewById(R.id.image);
         image.setImageResource(id);
 
+        ProductDataManager productDataManager = new ProductDataManager();
+        ArrayList<DetailItem> productList = productDataManager.get(itemId);
+
+        RecyclerView productListView = (RecyclerView) findViewById(R.id.productList);
+        productListView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new DetailItemAdapter(productList);
+        adapter.setClickListener(this);
+        productListView.setAdapter(adapter);
+        productListView.setNestedScrollingEnabled(false);
+
         boolean isComment = i.getBooleanExtra("isComment", false);
         if (isComment) {
             EditText input = (EditText) findViewById(R.id.commentInput);
@@ -51,4 +71,11 @@ public class ImageDetailActivity extends AppCompatActivity {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        DetailItem tag = adapter.getItem(position);
+        tag.setAdded(true);
+    }
+
 }
