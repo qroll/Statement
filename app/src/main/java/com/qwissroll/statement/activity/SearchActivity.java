@@ -2,6 +2,7 @@ package com.qwissroll.statement.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.qwissroll.statement.R;
+import com.qwissroll.statement.SuggestedTagsAdapter;
 import com.qwissroll.statement.view.TagTokenTextView;
 
 public class SearchActivity extends AppCompatActivity {
@@ -30,11 +32,12 @@ public class SearchActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tags);
 
-        tagView = (TagTokenTextView)findViewById(R.id.tagView);
+        tagView = (TagTokenTextView) findViewById(R.id.tagView);
         tagView.setAdapter(adapter);
 
         tagView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     final TagTokenTextView tac = (TagTokenTextView) v;
                     tac.performCompletion();
@@ -44,6 +47,8 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        tagView.addObject("this is a test");
     }
 
 }

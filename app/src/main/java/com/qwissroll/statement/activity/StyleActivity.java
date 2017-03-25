@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -31,6 +32,8 @@ public class StyleActivity extends AppCompatActivity {
         PageIndicatorView pageIndicatorView = (PageIndicatorView) findViewById(R.id.pageIndicatorView);
         pageIndicatorView.setViewPager(pager);
         pageIndicatorView.setAnimationType(AnimationType.DROP);
+        pageIndicatorView.setUnselectedColor(ContextCompat.getColor(getApplicationContext(), R.color.colorGrey));
+        pageIndicatorView.setSelectedColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
     }
 
     private class StylePagerAdapter extends FragmentPagerAdapter {
