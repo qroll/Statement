@@ -2,30 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="question 2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:text="Add any tags to filter the style" />
-
     <com.qwissroll.statement.view.TagTokenTextView
-        android:id="@+id/tagView"
+        android:id="@+id/userTags"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:inputType="textMultiLine|textAutoCorrect"
-        android:imeOptions="actionDone"/>
+        android:imeOptions="actionDone"
+        android:inputType="textMultiLine|textAutoCorrect" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,8 +20,8 @@
         android:text="Suggested tags" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/suggestedTagView"
+        android:id="@+id/suggestedTags"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
