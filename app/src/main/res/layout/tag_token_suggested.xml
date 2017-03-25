@@ -4,5 +4,4 @@
     android:layout_height="wrap_content"
     android:background="@drawable/tag_token_background"
     android:textColor="@drawable/tag_token_text_color"
-    android:padding="5dp"
-    android:onClick="selectTag"/>
+    android:padding="5dp" />

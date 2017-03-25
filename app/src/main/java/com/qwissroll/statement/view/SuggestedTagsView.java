@@ -1,21 +1,17 @@
 package com.qwissroll.statement.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.qwissroll.statement.R;
-import com.qwissroll.statement.SuggestedTagsAdapter;
+import com.tokenautocomplete.TokenCompleteTextView;
 import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import java.util.ArrayList;
@@ -29,12 +25,12 @@ public class SuggestedTagsView extends RelativeLayout {
 
     ArrayList<String> tags;
 
-    TagTokenTextView userTags;
+    TagTokenEditTextView userTags;
     ArrayAdapter<String> userTagsAdapter;
 
     FlowLayoutManager flowLayoutManager;
-    RecyclerView suggestedTags;
-    SuggestedTagsAdapter suggestedTagsAdapter;
+    TagTokenTextView suggestedTags;
+    ArrayAdapter<String> suggestedTagsAdapter;
 
     public SuggestedTagsView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
@@ -45,18 +41,42 @@ public class SuggestedTagsView extends RelativeLayout {
                 "icecream sandwich", "jellybean", "kitkat",
                 "lollipop", "marshmallow", "nougat"));
 
-        userTags = (TagTokenTextView) findViewById(R.id.userTags);
+        userTags = (TagTokenEditTextView) findViewById(R.id.userTags);
         userTagsAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, tags);
         userTags.setAdapter(userTagsAdapter);
         userTags.allowCollapse(false);
-        userTags.addObject("this is a test");
+        userTags.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    final TagTokenEditTextView tac = (TagTokenEditTextView) v;
+                    tac.performCompletion();
+                    return true;
+                }
 
-        suggestedTags = (RecyclerView) findViewById(R.id.suggestedTags);
-        flowLayoutManager = new FlowLayoutManager();
-        flowLayoutManager.setAutoMeasureEnabled(true);
-        suggestedTags.setLayoutManager(flowLayoutManager);
-        suggestedTagsAdapter = new SuggestedTagsAdapter(tags);
-        suggestedTags.setAdapter(suggestedTagsAdapter);
+                return false;
+            }
+        });
+
+        suggestedTags = (TagTokenTextView) findViewById(R.id.suggestedTags);
+        suggestedTags.addObject("this is a test");
+        suggestedTags.addObject("mhmm");
+        suggestedTags.addObject("android");
+        suggestedTags.addObject("crop top");
+        suggestedTags.addObject("beachwear");
+        suggestedTags.addObject("sundress");
+        suggestedTags.setTokenClickStyle(TokenCompleteTextView.TokenClickStyle.Delete);
+        suggestedTags.allowCollapse(false);
+        suggestedTags.setKeyListener(null);
+        suggestedTags.setTextIsSelectable(false);
+    }
+
+    public void addSuggestedTag(String text) {
+        suggestedTags.removeObject(text);
+        userTags.addObject(text);
+        userTags.requestFocus();
+        InputMethodManager imm = (InputMethodManager) userTags.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(userTags, InputMethodManager.SHOW_IMPLICIT);
     }
 
 }

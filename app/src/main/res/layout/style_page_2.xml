@@ -11,30 +11,8 @@
         android:layout_height="wrap_content"
         android:text="question 2" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:text="Add any tags to filter the style" />
-
-    <com.qwissroll.statement.view.TagTokenTextView
-        android:id="@+id/tagView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:inputType="textMultiLine|textAutoCorrect"
-        android:imeOptions="actionDone"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="32dp"
-        android:text="Suggested tags" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/suggestedTagView"
+    <com.qwissroll.statement.view.SuggestedTagsView
+        android:id="@+id/suggestedTagsView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

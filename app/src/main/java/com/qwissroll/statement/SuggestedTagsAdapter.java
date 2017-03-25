@@ -2,16 +2,17 @@ package com.qwissroll.statement;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by qruol on 25/3/2017.
  */
 
 public class SuggestedTagsAdapter extends RecyclerView.Adapter<SuggestedTagsAdapter.ViewHolder> {
-    private String[] mDataset;
+    private ArrayList<String> mTags;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -26,8 +27,8 @@ public class SuggestedTagsAdapter extends RecyclerView.Adapter<SuggestedTagsAdap
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public SuggestedTagsAdapter(String[] myDataset) {
-        mDataset = myDataset;
+    public SuggestedTagsAdapter(ArrayList<String> tags) {
+        mTags = tags;
     }
 
     // Create new views (invoked by the layout manager)
@@ -39,18 +40,20 @@ public class SuggestedTagsAdapter extends RecyclerView.Adapter<SuggestedTagsAdap
                 .inflate(R.layout.tag_token, parent, false);
         v.setSelected(false);
         ViewHolder vh = new ViewHolder(v);
+
         return vh;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataset[position]);
+        holder.mTextView.setText(mTags.get(position));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mTags.size();
     }
+
 }
