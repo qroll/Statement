@@ -8,12 +8,9 @@
     tools:context="com.qwissroll.statement.activity.StyleActivity"
     tools:showIn="@layout/activity_style">
 
-    <com.qwissroll.statement.view.TagTokenTextView
-        android:id="@+id/tagView"
+    <com.qwissroll.statement.view.SuggestedTagsView
+        android:id="@+id/suggestedTagsView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:imeOptions="actionDone"
-        android:inputType="textMultiLine|textAutoCorrect" />
+        android:layout_height="wrap_content"/>
 
 </android.support.constraint.ConstraintLayout>

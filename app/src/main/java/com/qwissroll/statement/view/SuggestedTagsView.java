@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.qwissroll.statement.R;
 import com.tokenautocomplete.TokenCompleteTextView;
-import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +27,6 @@ public class SuggestedTagsView extends RelativeLayout {
     TagTokenEditTextView userTags;
     ArrayAdapter<String> userTagsAdapter;
 
-    FlowLayoutManager flowLayoutManager;
     TagTokenTextView suggestedTags;
     ArrayAdapter<String> suggestedTagsAdapter;
 

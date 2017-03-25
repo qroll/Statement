@@ -2,22 +2,16 @@ package com.qwissroll.statement.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import com.qwissroll.statement.R;
-import com.qwissroll.statement.SuggestedTagsAdapter;
+import com.qwissroll.statement.view.SuggestedTagsView;
 import com.qwissroll.statement.view.TagTokenTextView;
+import com.tokenautocomplete.TokenCompleteTextView;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements TokenCompleteTextView.TokenListener {
 
-    TagTokenTextView tagView;
-    String[] tags;
-    ArrayAdapter<String> adapter;
+    SuggestedTagsView suggestedTagsView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,28 +21,18 @@ public class SearchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        tags = new String[]{"cupcake", "donut", "eclair", "froyo", "gingerbread", "honeycomb",
-                "icecream sandwich", "jellybean", "kitkat", "lollipop", "marshmallow", "nougat"};
+        suggestedTagsView = (SuggestedTagsView) findViewById(R.id.suggestedTagsView);
+        TagTokenTextView suggestedTags = (TagTokenTextView) suggestedTagsView.findViewById(R.id.suggestedTags);
+        suggestedTags.setTokenListener(this);
+    }
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tags);
+    @Override
+    public void onTokenAdded(Object token) {
+    }
 
-        tagView = (TagTokenTextView) findViewById(R.id.tagView);
-        tagView.setAdapter(adapter);
-
-        tagView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    final TagTokenTextView tac = (TagTokenTextView) v;
-                    tac.performCompletion();
-                    return true;
-                }
-
-                return false;
-            }
-        });
-
-        tagView.addObject("this is a test");
+    @Override
+    public void onTokenRemoved(Object token) {
+        suggestedTagsView.addSuggestedTag((String) token);
     }
 
 }

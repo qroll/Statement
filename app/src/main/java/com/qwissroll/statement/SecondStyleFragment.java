@@ -52,4 +52,5 @@ public class SecondStyleFragment extends Fragment implements TokenCompleteTextVi
     public void onTokenRemoved(Object token) {
         suggestedTagsView.addSuggestedTag((String) token);
     }
+
 }
