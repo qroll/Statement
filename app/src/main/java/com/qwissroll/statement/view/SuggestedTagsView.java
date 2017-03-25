@@ -77,4 +77,8 @@ public class SuggestedTagsView extends RelativeLayout {
         imm.showSoftInput(userTags, InputMethodManager.SHOW_IMPLICIT);
     }
 
+    public ArrayList<String> getTags() {
+        return new ArrayList<String>(userTags.getObjects());
+    }
+
 }
