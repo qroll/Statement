@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements DashboardItemAdap
     @Override
     public void onItemLikeClick(View view, int position) {
         DashboardItemTag tag = adapter.getItem(position);
-        tag.setSelected(!tag.isSelected());
+        tag.setLiked(!tag.isLiked());
     }
 
     @Override

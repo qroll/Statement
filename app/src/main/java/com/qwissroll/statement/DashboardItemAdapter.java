@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.qwissroll.statement.pojo.DashboardItemTag;
@@ -53,7 +51,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter<DashboardItemAdap
                     case R.id.button_like:
                         mClickListener.onItemLikeClick(view, getAdapterPosition());
                         DashboardItemTag tag = mTags.get(getAdapterPosition());
-                        mButtonLike.setSelected(tag.isSelected());
+                        mButtonLike.setSelected(tag.isLiked());
                         break;
                     case R.id.button_comment:
                         mClickListener.onItemCommentClick(view, getAdapterPosition());
@@ -94,7 +92,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter<DashboardItemAdap
         DashboardItemTag tag = mTags.get(position);
         int id = context.getResources().getIdentifier("ootd_" + tag.getItemId(), "drawable", context.getPackageName());
         Glide.with(context).load(id).into(holder.mImageView);
-        holder.mButtonLike.setSelected(tag.isSelected());
+        holder.mButtonLike.setSelected(tag.isLiked());
     }
 
     // allows clicks events to be caught

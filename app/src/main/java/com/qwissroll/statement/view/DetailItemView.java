@@ -22,7 +22,7 @@ public class DetailItemView extends RelativeLayout {
 
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.labelValue, 0, 0);
         int itemId = Integer.parseInt(array.getString(R.styleable.labelValue_value));
-        DashboardItemTag tag = new DashboardItemTag(itemId, false);
+        DashboardItemTag tag = new DashboardItemTag(itemId, "?", false);
         setTag(tag);
 
         String imageSource = "ootd_" + itemId;

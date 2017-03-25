@@ -14,12 +14,12 @@ public class OutfitDataManager {
 
     public OutfitDataManager() {
         dashboardItems = new ArrayList<DashboardItemTag>();
-        dashboardItems.add(new DashboardItemTag(1, false));
-        dashboardItems.add(new DashboardItemTag(2, true));
-        dashboardItems.add(new DashboardItemTag(3, false));
-        dashboardItems.add(new DashboardItemTag(4, false));
-        dashboardItems.add(new DashboardItemTag(1, false));
-        dashboardItems.add(new DashboardItemTag(2, false));
+        dashboardItems.add(new DashboardItemTag(1, "Casual Friday", false));
+        dashboardItems.add(new DashboardItemTag(2, "Safari", true));
+        dashboardItems.add(new DashboardItemTag(3, "Sea breeze", false));
+        dashboardItems.add(new DashboardItemTag(4, "Girl Next Door", false));
+        dashboardItems.add(new DashboardItemTag(1, "Whatever", false));
+        dashboardItems.add(new DashboardItemTag(2, "Anything", false));
     }
 
     public ArrayList<DashboardItemTag> getAll() {
