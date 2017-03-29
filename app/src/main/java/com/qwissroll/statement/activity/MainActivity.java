@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements DashboardItemAdap
 
     DashboardItemAdapter adapter;
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +87,16 @@ public class MainActivity extends AppCompatActivity implements DashboardItemAdap
         dashboard.setNestedScrollingEnabled(false);
     }
 
+    public void openCameraActivity() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        String targetFilename = sdf.format(new Date());
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
     @Override
     public void onItemImageClick(View view, int position) {
         Intent intent = new Intent(this, ImageDetailActivity.class);
@@ -118,6 +130,31 @@ public class MainActivity extends AppCompatActivity implements DashboardItemAdap
     public void openSearchActivity(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivityForResult(intent, 1);
+    }
+
+    public void openShareActivity(Bitmap image) {
+        Intent intent = new Intent(this, ShareActivity.class);
+        intent.putExtra("image", image);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            openShareActivity((Bitmap) data.getExtras().get("data"));
+        }
+    }
+
+    private boolean performCameraPermissionCheck() {
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA}, REQUEST_IMAGE_CAPTURE);
+        }
+        return false;
     }
 
 }
