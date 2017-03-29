@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -78,6 +79,8 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
     public void onItemClick(View view, int position) {
         DetailItem tag = adapter.getItem(position);
         tag.setAdded(true);
+        Button button = (Button) view.findViewById(R.id.button_add);
+        button.setEnabled(false);
     }
 
 }
