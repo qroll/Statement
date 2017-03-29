@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements DashboardItemAdap
             editor.commit();
         }
 
-        OutfitDataManager outfitDataManager = new OutfitDataManager();
+        OutfitDataManager outfitDataManager = OutfitDataManager.getInstance();
         ArrayList<DashboardItemTag> dashboardItems = outfitDataManager.getAll();
 
         RecyclerView dashboard = (RecyclerView) findViewById(R.id.dashboard);

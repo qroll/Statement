@@ -12,9 +12,10 @@ import java.util.Collection;
 
 public class OutfitDataManager {
 
-    private ArrayList<DashboardItemTag> dashboardItems;
+    private static ArrayList<DashboardItemTag> dashboardItems;
+    private static OutfitDataManager instance;
 
-    public OutfitDataManager() {
+    private OutfitDataManager() {
         dashboardItems = new ArrayList<DashboardItemTag>();
         dashboardItems.add(new DashboardItemTag(1, "Casual Friday", false,
                 new ArrayList<String>(Arrays.asList("casual", "jeans", "long sleeved", "white"))));
@@ -28,6 +29,13 @@ public class OutfitDataManager {
                 new ArrayList<String>(Arrays.asList("casual", "jeans", "long sleeved", "white"))));
         dashboardItems.add(new DashboardItemTag(2, "Anything", false,
                 new ArrayList<String>(Arrays.asList("hijab", "lace", "long sleeved", "khaki"))));
+    }
+
+    public static OutfitDataManager getInstance() {
+        if (instance == null) {
+            instance = new OutfitDataManager();
+        }
+        return instance;
     }
 
     public ArrayList<DashboardItemTag> getAll() {

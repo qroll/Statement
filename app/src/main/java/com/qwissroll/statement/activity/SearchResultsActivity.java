@@ -31,7 +31,7 @@ public class SearchResultsActivity extends AppCompatActivity implements Dashboar
         Intent i = getIntent();
         ArrayList<String> searchTags = i.getStringArrayListExtra("searchTags");
 
-        OutfitDataManager outfitDataManager = new OutfitDataManager();
+        OutfitDataManager outfitDataManager = OutfitDataManager.getInstance();
         ArrayList<DashboardItemTag> dashboardItems = outfitDataManager.getAllWithAnyTags(searchTags);
 
         RecyclerView dashboard = (RecyclerView) findViewById(R.id.dashboard);
