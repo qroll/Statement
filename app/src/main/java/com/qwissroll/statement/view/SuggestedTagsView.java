@@ -23,6 +23,7 @@ import java.util.Arrays;
 public class SuggestedTagsView extends RelativeLayout {
 
     ArrayList<String> tags;
+    ArrayList<String> autoCompleteTags;
 
     TagTokenEditTextView userTags;
     ArrayAdapter<String> userTagsAdapter;
@@ -39,8 +40,13 @@ public class SuggestedTagsView extends RelativeLayout {
                 "icecream sandwich", "jellybean", "kitkat",
                 "lollipop", "marshmallow", "nougat"));
 
+        autoCompleteTags = new ArrayList<String>(Arrays.asList("beachwear", "bohemian", "bold",
+                "casual", "checkered", "crop top", "formal",
+                "hijab", "jeans", "khaki", "lace", "long sleeved", "loose",
+                "white"));
+
         userTags = (TagTokenEditTextView) findViewById(R.id.userTags);
-        userTagsAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, tags);
+        userTagsAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, autoCompleteTags);
         userTags.setAdapter(userTagsAdapter);
         userTags.allowCollapse(false);
         userTags.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -57,12 +63,9 @@ public class SuggestedTagsView extends RelativeLayout {
         });
 
         suggestedTags = (TagTokenTextView) findViewById(R.id.suggestedTags);
-        suggestedTags.addObject("this is a test");
-        suggestedTags.addObject("mhmm");
-        suggestedTags.addObject("android");
-        suggestedTags.addObject("crop top");
-        suggestedTags.addObject("beachwear");
-        suggestedTags.addObject("sundress");
+        for (String tag : tags) {
+            suggestedTags.addObject(tag);
+        }
         suggestedTags.setTokenClickStyle(TokenCompleteTextView.TokenClickStyle.Delete);
         suggestedTags.allowCollapse(false);
         suggestedTags.setKeyListener(null);
