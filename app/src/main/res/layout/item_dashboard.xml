@@ -3,12 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.qwissroll.statement.view.SquareImageView
+    <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:cropToPadding="false"
-        android:scaleType="centerCrop" />
+        android:layout_height="wrap_content" />
 
     <ImageButton
         android:id="@+id/button_like"
