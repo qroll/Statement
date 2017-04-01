@@ -21,9 +21,6 @@ public class FirstStyleFragment extends Fragment implements SeekBar.OnSeekBarCha
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.style_page_1, container, false);
 
-        TextView textView = (TextView) view.findViewById(R.id.textView);
-        textView.setText(getArguments().getString("msg"));
-
         SeekBar seekBar = (SeekBar) view.findViewById(R.id.slider);
         seekBar.setOnSeekBarChangeListener(this);
         return view;

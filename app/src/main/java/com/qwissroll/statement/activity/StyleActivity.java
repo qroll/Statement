@@ -1,5 +1,6 @@
 package com.qwissroll.statement.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
+import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.qwissroll.statement.FirstStyleFragment;
 import com.qwissroll.statement.R;
 import com.qwissroll.statement.SecondStyleFragment;
@@ -17,18 +20,21 @@ import com.qwissroll.statement.SecondStyleFragment;
 import com.rd.PageIndicatorView;
 import com.rd.animation.AnimationType;
 
-public class StyleActivity extends AppCompatActivity implements FirstStyleFragment.SliderChangeListener {
+public class StyleActivity extends AppIntro implements FirstStyleFragment.SliderChangeListener {
 
     private int formalSliderValue = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*
         setContentView(R.layout.activity_style);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        */
+        /*
         ViewPager pager = (ViewPager) findViewById(R.id.viewPager);
         pager.setAdapter(new StylePagerAdapter(getSupportFragmentManager()));
 
@@ -37,6 +43,13 @@ public class StyleActivity extends AppCompatActivity implements FirstStyleFragme
         pageIndicatorView.setAnimationType(AnimationType.DROP);
         pageIndicatorView.setUnselectedColor(ContextCompat.getColor(getApplicationContext(), R.color.colorGrey));
         pageIndicatorView.setSelectedColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+        */
+        addSlide(FirstStyleFragment.newInstance("FirstStyleFragment, Instance 1"));
+        addSlide(SecondStyleFragment.newInstance("SecondStyleFragment, Instance 1"));
+
+        showSkipButton(false);
+        setIndicatorColor(ContextCompat.getColor(this, R.color.colorAccent),
+                ContextCompat.getColor(this, R.color.colorGrey));
     }
 
     @Override
