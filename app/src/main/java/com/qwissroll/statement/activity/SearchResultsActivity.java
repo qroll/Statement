@@ -11,11 +11,11 @@ import android.view.View;
 import com.qwissroll.statement.DashboardItemAdapter;
 import com.qwissroll.statement.R;
 import com.qwissroll.statement.data.OutfitDataManager;
-import com.qwissroll.statement.pojo.DashboardItemTag;
+import com.qwissroll.statement.pojo.DashboardItem;
 
 import java.util.ArrayList;
 
-public class SearchResultsActivity extends AppCompatActivity implements DashboardItemAdapter.ItemClickListener {
+public class SearchResultsActivity extends AppCompatActivity implements DashboardItemAdapter.DashboardItemClickListener {
 
     DashboardItemAdapter adapter;
 
@@ -32,7 +32,7 @@ public class SearchResultsActivity extends AppCompatActivity implements Dashboar
         ArrayList<String> searchTags = i.getStringArrayListExtra("searchTags");
 
         OutfitDataManager outfitDataManager = OutfitDataManager.getInstance();
-        ArrayList<DashboardItemTag> dashboardItems = outfitDataManager.getAllWithAnyTags(searchTags);
+        ArrayList<DashboardItem> dashboardItems = outfitDataManager.getAllWithAnyTags(searchTags);
 
         RecyclerView dashboard = (RecyclerView) findViewById(R.id.dashboard);
         adapter = new DashboardItemAdapter(dashboardItems);
@@ -53,7 +53,7 @@ public class SearchResultsActivity extends AppCompatActivity implements Dashboar
 
     @Override
     public void onItemLikeClick(View view, int position) {
-        DashboardItemTag tag = adapter.getItem(position);
+        DashboardItem tag = adapter.getItem(position);
         tag.setLiked(!tag.isLiked());
     }
 

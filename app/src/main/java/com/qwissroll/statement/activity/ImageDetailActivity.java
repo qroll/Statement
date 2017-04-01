@@ -54,7 +54,7 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
         ImageView image = (ImageView) findViewById(R.id.image);
         image.setImageResource(id);
 
-        ProductDataManager productDataManager = new ProductDataManager();
+        ProductDataManager productDataManager = ProductDataManager.getInstance();
         ArrayList<DetailItem> productList = productDataManager.get(itemId);
 
         RecyclerView productListView = (RecyclerView) findViewById(R.id.productList);

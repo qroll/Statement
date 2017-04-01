@@ -12,9 +12,10 @@ import java.util.Map;
 
 public class ProductDataManager {
 
-    private Map<Integer, ArrayList<DetailItem>> items;
+    private static Map<Integer, ArrayList<DetailItem>> items;
+    private static ProductDataManager instance;
 
-    public ProductDataManager() {
+    private ProductDataManager() {
         items = new HashMap<Integer, ArrayList<DetailItem>>();
 
         ArrayList<DetailItem> first = new ArrayList<DetailItem>();
@@ -36,6 +37,13 @@ public class ProductDataManager {
         fourth.add(new DetailItem(7, "Checkered shirt", "aaa", false));
         fourth.add(new DetailItem(8, "Black jeans", "aaa", false));
         items.put(4, fourth);
+    }
+
+    public static ProductDataManager getInstance() {
+        if (instance == null) {
+            instance = new ProductDataManager();
+        }
+        return instance;
     }
 
     public ArrayList<DetailItem> get(Integer id) {

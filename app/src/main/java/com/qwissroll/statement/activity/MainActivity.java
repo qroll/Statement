@@ -1,22 +1,14 @@
 package com.qwissroll.statement.activity;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,56 +17,67 @@ import android.widget.Toast;
 import com.qwissroll.statement.DashboardItemAdapter;
 import com.qwissroll.statement.R;
 import com.qwissroll.statement.data.OutfitDataManager;
-import com.qwissroll.statement.pojo.DashboardItemTag;
+import com.qwissroll.statement.data.ProductDataManager;
+import com.qwissroll.statement.pojo.DashboardItem;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements DashboardItemAdapter.ItemClickListener {
+/*
+The main entry point of the application.
+Contains:
+    - dashboard for Explore task
+    - search button
+    - bottom bar linking to Profile, Style and Share tasks
+ */
+public class MainActivity extends AppCompatActivity
+        implements DashboardItemAdapter.DashboardItemClickListener {
 
-    DashboardItemAdapter adapter;
+    private static final int REQUEST_CODE_DEFAULT = 1;
+    private static final int REQUEST_CODE_ITEM_DETAIL_COMMENT = 2;
 
-    String mCurrentPhotoPath;
+    OutfitDataManager outfitDataManager;
+    ProductDataManager productDataManager;
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    DashboardItemAdapter dashboardItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
+
+        // init toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        // init bottom nav bar
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
             new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_style:
-                        openStyleActivity(null);
-                        break;
-                    case R.id.action_share:
-                        if (performCameraPermissionCheck()) {
-                            openCameraActivity();
-                        }
-                        break;
-                    case R.id.action_profile:
+                @Override
+                public boolean onNavigationItemSelected(MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.action_profile:
+                            break;
+                        case R.id.action_style:
+                            dispatchStyleActivity();
+                            break;
+                        case R.id.action_share:
+                            dispatchShareActivity();
+                            break;
+                    }
+                    return false;
                 }
-                return false;
             }
-        });
+        );
 
+        // run any first time code
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if(!prefs.getBoolean("firstTime", false)) {
-            // run your one time code
-            Toast toast = Toast.makeText(getApplicationContext(), "Hello toast!", Toast.LENGTH_SHORT);
+            String message = "Hello toast!";
+            Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
             toast.show();
 
             SharedPreferences.Editor editor = prefs.edit();
@@ -82,120 +85,70 @@ public class MainActivity extends AppCompatActivity implements DashboardItemAdap
             editor.commit();
         }
 
-        OutfitDataManager outfitDataManager = OutfitDataManager.getInstance();
-        ArrayList<DashboardItemTag> dashboardItems = outfitDataManager.getAll();
+        // init data managers here to mock persistence
+        outfitDataManager = OutfitDataManager.getInstance();
+        productDataManager = ProductDataManager.getInstance();
+
+        // init dashboard
+        ArrayList<DashboardItem> dashboardItems = outfitDataManager.getAll();
 
         RecyclerView dashboard = (RecyclerView) findViewById(R.id.dashboard);
-        adapter = new DashboardItemAdapter(dashboardItems);
-        adapter.setClickListener(this);
+        dashboardItemAdapter = new DashboardItemAdapter(dashboardItems);
+        dashboardItemAdapter.setClickListener(this);
         dashboard.setLayoutManager(new LinearLayoutManager(this));
-        dashboard.setAdapter(adapter);
+        dashboard.setAdapter(dashboardItemAdapter);
         dashboard.setNestedScrollingEnabled(false);
-    }
-
-    public void openCameraActivity() {
-        File photoFile = null;
-        try {
-            photoFile = createImageFile();
-        } catch (IOException ex) {
-
-        }
-
-        if (photoFile != null) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            Uri photoUri = FileProvider.getUriForFile(this,
-                    "com.qwissroll.statement.fileprovider", photoFile);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
-            }
+        RecyclerView.ItemAnimator animator = dashboard.getItemAnimator();
+        if (animator instanceof SimpleItemAnimator) {
+            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
         }
     }
 
-    @Override
+    /*
+    Click listeners
+     */
+
     public void onItemImageClick(View view, int position) {
-        Intent intent = new Intent(this, ImageDetailActivity.class);
-
-        int itemId = position + 1;
-        intent.putExtra("itemId", itemId);
-        startActivityForResult(intent, 1);
+        dispatchItemDetailActivity(position + 1, REQUEST_CODE_DEFAULT);
     }
 
-    @Override
     public void onItemLikeClick(View view, int position) {
-        DashboardItemTag tag = adapter.getItem(position);
-        tag.setLiked(!tag.isLiked());
+        DashboardItem item = dashboardItemAdapter.getItem(position);
+        if (item.isLiked()) {
+            item.setLikes(item.getLikes() - 1);
+        } else {
+            item.setLikes(item.getLikes() + 1);
+        }
+        item.setLiked(!item.isLiked());
     }
 
-    @Override
     public void onItemCommentClick(View view, int position) {
-        Intent intent = new Intent(this, ImageDetailActivity.class);
-
-        int itemId = position + 1;
-        intent.putExtra("itemId", itemId);
-        intent.putExtra("isComment", true);
-        startActivityForResult(intent, 1);
+        dispatchItemDetailActivity(position + 1, REQUEST_CODE_ITEM_DETAIL_COMMENT);
     }
 
-    public void openStyleActivity(View view) {
+    /*
+    Activity dispatchers start new activities
+     */
+
+    public void dispatchStyleActivity() {
         Intent intent = new Intent(this, StyleActivity.class);
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, REQUEST_CODE_DEFAULT);
     }
 
-    public void openSearchActivity(View view) {
+    public void dispatchSearchActivity() {
         Intent intent = new Intent(this, SearchActivity.class);
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, REQUEST_CODE_DEFAULT);
     }
 
-    public void openShareActivity(String photoPath) {
+    public void dispatchShareActivity() {
         Intent intent = new Intent(this, ShareActivity.class);
-        intent.putExtra("photoPath", photoPath);
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, REQUEST_CODE_DEFAULT);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-
-            openShareActivity(mCurrentPhotoPath);
-        }
-    }
-
-    private boolean performCameraPermissionCheck() {
-        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
-        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.CAMERA}, REQUEST_IMAGE_CAPTURE);
-        }
-        return false;
-    }
-
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp;
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.getAbsolutePath();
-        return image;
-    }
-
-    private void galleryAddPic() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(mCurrentPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
+    public void dispatchItemDetailActivity(int itemId, int requestCode) {
+        Intent intent = new Intent(this, ImageDetailActivity.class);
+        intent.putExtra("itemId", itemId);
+        startActivityForResult(intent, requestCode);
     }
 
 }
-

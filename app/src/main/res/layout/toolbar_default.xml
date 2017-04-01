@@ -21,6 +21,6 @@
         android:background="?android:selectableItemBackgroundBorderless"
         android:scaleType="fitXY"
         android:src="@drawable/ic_action_search"
-        android:onClick="openSearchActivity"/>
+        android:onClick="dispatchSearchActivity"/>
 
 </android.support.v7.widget.Toolbar>
