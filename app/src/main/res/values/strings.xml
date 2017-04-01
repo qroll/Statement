@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">Statement</string>
-    <string name="title_activity_image_detail">ImageDetailActivity</string>
+    <string name="title_activity_image_detail">Image Detail</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_style">StyleActivity</string>
-    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_style">Style</string>
+    <string name="title_activity_style_results">Style Results</string>
+    <string name="title_activity_share">Share</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_search_results">Search Results</string>
+    <string name="button_search">Search</string>
+    <string name="button_style_complete">DONE</string>
+    <string name="tag_input">Add any tags to filter the style</string>
+    <string name="tag_suggest">Suggested tags</string>
+    <string name="style_formal_slider_question">How formal do you need to be?</string>
 </resources>

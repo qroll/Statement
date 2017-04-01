@@ -15,6 +15,7 @@ import com.tokenautocomplete.TokenCompleteTextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by qruol on 25/3/2017.
@@ -32,7 +33,7 @@ public class TagInputView extends RelativeLayout
     private TagSelectView selectableTagsView;
     private ArrayAdapter<String> selectableTagsAdapter;
 
-    private TokenCompleteTextView.TokenListener mTokenListener;
+    private TagChangeListener mTagChangeListener;
 
     public TagInputView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
@@ -104,6 +105,9 @@ public class TagInputView extends RelativeLayout
     @Override
     public void onTokenRemoved(Object token) {
         addSuggestedTag((String) token);
+        if (mTagChangeListener != null) {
+            mTagChangeListener.onTagChange(editableTagsView.getObjects());
+        }
     }
 
     public void requestFocusForTagInput() {
@@ -111,6 +115,14 @@ public class TagInputView extends RelativeLayout
         InputMethodManager imm = (InputMethodManager)
                 getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(editableTagsView, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    public void setTagChangeListener(TagChangeListener l) {
+        mTagChangeListener = l;
+    }
+
+    public interface TagChangeListener {
+        void onTagChange(List<String> tags);
     }
 
 }

@@ -3,5 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/tag_token_background"
-    android:textColor="@drawable/tag_token_text_color"
-    android:padding="5dp" />
+    android:paddingBottom="@dimen/tag_padding_vertical"
+    android:paddingLeft="@dimen/tag_padding_horizontal"
+    android:paddingRight="@dimen/tag_padding_horizontal"
+    android:paddingTop="@dimen/tag_padding_vertical"
+    android:textColor="@drawable/tag_token_text_color" />

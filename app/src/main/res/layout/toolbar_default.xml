@@ -11,16 +11,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Statement"/>
+        android:text="@string/app_name" />
 
     <ImageButton
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/app_bar_icon"
+        android:layout_height="@dimen/app_bar_icon"
         android:layout_gravity="right"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="@dimen/screen_margin_horizontal"
         android:background="?android:selectableItemBackgroundBorderless"
+        android:onClick="dispatchSearchActivity"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_action_search"
-        android:onClick="dispatchSearchActivity"/>
+        android:src="@drawable/ic_action_search" />
 
 </android.support.v7.widget.Toolbar>

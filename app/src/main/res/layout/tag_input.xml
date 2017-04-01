@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="32dp"
+    android:layout_margin="@dimen/screen_margin_horizontal"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add any tags to filter the style" />
+        android:text="@string/tag_input" />
 
     <com.qwissroll.statement.view.EditableTagInputView
         android:id="@+id/editableTagsView"
@@ -20,14 +20,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Suggested tags" />
+        android:text="@string/tag_suggest" />
 
     <com.qwissroll.statement.view.TagSelectView
         android:id="@+id/selectableTagsView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
         android:imeOptions="actionDone"
-        android:inputType="textMultiLine"
-        android:backgroundTint="@android:color/transparent"/>
+        android:inputType="textMultiLine" />
 
 </LinearLayout>

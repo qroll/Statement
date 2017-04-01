@@ -43,8 +43,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.ShareActivity"
-            android:label="@string/title_activity_image_detail"
+            android:label="@string/title_activity_share"
             android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".activity.StyleResultsActivity"
+            android:label="@string/title_activity_style_results"
+            android:parentActivityName=".activity.StyleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <provider
@@ -54,8 +59,9 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
+
     </application>
 
 </manifest>

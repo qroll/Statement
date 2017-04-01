@@ -1,6 +1,7 @@
 package com.qwissroll.statement.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,24 +10,25 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.SeekBar;
 
-import com.qwissroll.statement.FirstStyleFragment;
+import com.qwissroll.statement.StyleFormalSliderFragment;
 import com.qwissroll.statement.R;
-import com.qwissroll.statement.SecondStyleFragment;
+import com.qwissroll.statement.StyleTagsFragment;
 
 import com.qwissroll.statement.view.TagInputView;
 import com.rd.PageIndicatorView;
 import com.rd.animation.AnimationType;
 
-public class StyleActivity extends AppCompatActivity implements FirstStyleFragment.SliderChangeListener {
+import java.util.ArrayList;
+
+public class StyleActivity extends AppCompatActivity {
 
     private static final int PAGE_COUNT = 2;
-
-    private int formalSliderValue = 50;
+    private static final int REQUEST_CODE_DEFAULT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +79,6 @@ public class StyleActivity extends AppCompatActivity implements FirstStyleFragme
         pageIndicatorView.setSelectedColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
     }
 
-    @Override
-    public void onSliderChange(int sliderValue) {
-        formalSliderValue = sliderValue;
-        Log.d("!!!!INFO", "" + formalSliderValue);
-    }
-
     private class StylePagerAdapter extends FragmentPagerAdapter {
 
         public StylePagerAdapter(FragmentManager fm) {
@@ -93,11 +89,11 @@ public class StyleActivity extends AppCompatActivity implements FirstStyleFragme
         public Fragment getItem(int pos) {
             switch(pos) {
                 case 0:
-                    return FirstStyleFragment.newInstance("FirstStyleFragment, Instance 1");
+                    return StyleFormalSliderFragment.newInstance();
                 case 1:
-                    return SecondStyleFragment.newInstance("SecondStyleFragment, Instance 1");
+                    return StyleTagsFragment.newInstance();
                 default:
-                    return FirstStyleFragment.newInstance("FirstFragment, Default");
+                    return StyleFormalSliderFragment.newInstance();
             }
         }
 
@@ -105,6 +101,20 @@ public class StyleActivity extends AppCompatActivity implements FirstStyleFragme
         public int getCount() {
             return PAGE_COUNT;
         }
+    }
+
+    public void dispatchStyleOutfitActivity(View view) {
+        Intent intent = new Intent(this, StyleResultsActivity.class);
+
+        SeekBar seekBar = (SeekBar) findViewById(R.id.formalSlider);
+        int formalValue = seekBar.getProgress();
+        intent.putExtra("formalValue", formalValue);
+
+        TagInputView tagInputView = (TagInputView) findViewById(R.id.tagInputView);
+        ArrayList<String> tags = tagInputView.getTags();
+        intent.putStringArrayListExtra("tags", tags);
+
+        startActivityForResult(intent, REQUEST_CODE_DEFAULT);
     }
 
 }

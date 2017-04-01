@@ -2,4 +2,11 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="bottom_nav_bar_height">56dp</dimen>
+    <dimen name="button">32dp</dimen>
+    <dimen name="screen_margin_horizontal">16dp</dimen>
+    <dimen name="tag_padding_horizontal">8dp</dimen>
+    <dimen name="tag_padding_vertical">4dp</dimen>
+    <dimen name="app_bar_icon">24dp</dimen>
+    <dimen name="h1">24sp</dimen>
 </resources>

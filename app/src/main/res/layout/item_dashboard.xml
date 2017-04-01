@@ -34,8 +34,8 @@
 
     <ImageButton
         android:id="@+id/button_comment"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/button"
+        android:layout_height="@dimen/button"
         android:layout_below="@id/image"
         android:layout_centerVertical="true"
         android:layout_margin="8dp"
