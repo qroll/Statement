@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:text="question 2" />
 
-    <com.qwissroll.statement.view.SuggestedTagsView
-        android:id="@+id/suggestedTagsView"
+    <com.qwissroll.statement.view.TagInputView
+        android:id="@+id/tagInputView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

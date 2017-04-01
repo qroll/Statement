@@ -2,10 +2,8 @@ package com.qwissroll.statement.view;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.Editable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -18,8 +16,8 @@ import com.tokenautocomplete.TokenCompleteTextView;
  * Created by qruol on 24/3/2017.
  */
 
-public class TagTokenTextView extends TokenCompleteTextView<String> {
-    public TagTokenTextView(Context context, AttributeSet attrs) {
+public class EditableTagInputView extends TokenCompleteTextView<String> {
+    public EditableTagInputView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -28,7 +26,7 @@ public class TagTokenTextView extends TokenCompleteTextView<String> {
         LayoutInflater l = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         TextView view = (TextView) l.inflate(R.layout.tag_token, (ViewGroup) getParent(), false);
         allowDuplicates(false);
-        setTokenClickStyle(TokenCompleteTextView.TokenClickStyle.Select);
+        setTokenClickStyle(TokenClickStyle.Select);
         setThreshold(1);
 
         view.setText(tag);
@@ -44,25 +42,6 @@ public class TagTokenTextView extends TokenCompleteTextView<String> {
     public void setSelected(boolean selected) {
         super.setSelected(selected);
         setCompoundDrawablesWithIntrinsicBounds(0, 0, selected ? R.drawable.ic_action_close : 0, 0);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int action = event.getActionMasked();
-        Editable text = getText();
-
-        if (text != null && action == MotionEvent.ACTION_UP) {
-            int offset = getOffsetForPosition(event.getX(), event.getY());
-            if (offset != -1) {
-                TokenImageSpan[] links = text.getSpans(offset, offset, TokenImageSpan.class);
-
-                if (links.length > 0) {
-                    links[0].onClick();
-                    links[0].onClick();
-                }
-            }
-        }
-        return true;
     }
 
 }

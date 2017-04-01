@@ -62,6 +62,10 @@ public class OutfitDataManager {
         return instance;
     }
 
+    public DashboardItem get(int id) {
+        return dashboardItems.get(id - 1);
+    }
+
     public ArrayList<DashboardItem> getAll() {
         return dashboardItems;
     }

@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity
                         case R.id.action_profile:
                             break;
                         case R.id.action_style:
-                            dispatchStyleActivity();
+                            dispatchStyleActivity(null);
                             break;
                         case R.id.action_share:
-                            dispatchShareActivity();
+                            dispatchShareActivity(null);
                             break;
                     }
                     return false;
@@ -130,17 +130,17 @@ public class MainActivity extends AppCompatActivity
     Activity dispatchers start new activities
      */
 
-    public void dispatchStyleActivity() {
+    public void dispatchStyleActivity(View view) {
         Intent intent = new Intent(this, StyleActivity.class);
         startActivityForResult(intent, REQUEST_CODE_DEFAULT);
     }
 
-    public void dispatchSearchActivity() {
+    public void dispatchSearchActivity(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivityForResult(intent, REQUEST_CODE_DEFAULT);
     }
 
-    public void dispatchShareActivity() {
+    public void dispatchShareActivity(View view) {
         Intent intent = new Intent(this, ShareActivity.class);
         startActivityForResult(intent, REQUEST_CODE_DEFAULT);
     }

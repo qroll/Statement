@@ -17,7 +17,9 @@ import android.widget.TextView;
 
 import com.qwissroll.statement.DetailItemAdapter;
 import com.qwissroll.statement.R;
+import com.qwissroll.statement.data.OutfitDataManager;
 import com.qwissroll.statement.data.ProductDataManager;
+import com.qwissroll.statement.pojo.DashboardItem;
 import com.qwissroll.statement.pojo.DetailItem;
 
 import java.util.ArrayList;
@@ -48,6 +50,9 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
         int itemId = i.getIntExtra("itemId", 0);
         TextView text = (TextView) findViewById(R.id.testText);
         text.setText("You selected " + itemId);
+        DashboardItem item = OutfitDataManager.getInstance().get(itemId);
+
+        getSupportActionBar().setTitle(item.getItemName());
 
         String imageSource = "ootd_" + itemId;
         int id = getResources().getIdentifier(imageSource, "drawable", getPackageName());

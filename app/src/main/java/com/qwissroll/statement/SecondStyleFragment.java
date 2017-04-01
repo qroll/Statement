@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.qwissroll.statement.view.SuggestedTagsView;
-import com.qwissroll.statement.view.TagTokenTextView;
+import com.qwissroll.statement.view.TagInputView;
+import com.qwissroll.statement.view.TagSelectView;
 import com.tokenautocomplete.TokenCompleteTextView;
 
 /**
@@ -17,7 +17,7 @@ import com.tokenautocomplete.TokenCompleteTextView;
 
 public class SecondStyleFragment extends Fragment implements TokenCompleteTextView.TokenListener {
 
-    SuggestedTagsView suggestedTagsView;
+    TagInputView tagInputView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,10 +26,7 @@ public class SecondStyleFragment extends Fragment implements TokenCompleteTextVi
         TextView textView = (TextView) view.findViewById(R.id.textView);
         textView.setText(getArguments().getString("msg"));
 
-        suggestedTagsView = (SuggestedTagsView) view.findViewById(R.id.suggestedTagsView);
-        TagTokenTextView suggestedTags = (TagTokenTextView) suggestedTagsView.findViewById(R.id.suggestedTags);
-        suggestedTags.setTokenListener(this);
-
+        tagInputView = (TagInputView) view.findViewById(R.id.tagInputView);
         return view;
     }
 
@@ -50,7 +47,7 @@ public class SecondStyleFragment extends Fragment implements TokenCompleteTextVi
 
     @Override
     public void onTokenRemoved(Object token) {
-        suggestedTagsView.addSuggestedTag((String) token);
+        tagInputView.addSuggestedTag((String) token);
     }
 
 }

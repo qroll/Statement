@@ -8,8 +8,8 @@
     tools:context="com.qwissroll.statement.activity.StyleActivity"
     tools:showIn="@layout/activity_style">
 
-    <com.qwissroll.statement.view.SuggestedTagsView
-        android:id="@+id/suggestedTagsView"
+    <com.qwissroll.statement.view.TagInputView
+        android:id="@+id/tagInputView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/suggestedTagsView"
+        app:layout_constraintTop_toBottomOf="@id/tagInputView"
         android:text="Search"
-        android:onClick="openSearchResultsActivity" />
+        android:onClick="dispatchSearchResultsActivity" />
 
 </android.support.constraint.ConstraintLayout>

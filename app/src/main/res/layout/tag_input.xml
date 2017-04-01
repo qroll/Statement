@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:text="Add any tags to filter the style" />
 
-    <com.qwissroll.statement.view.TagTokenEditTextView
-        android:id="@+id/userTags"
+    <com.qwissroll.statement.view.EditableTagInputView
+        android:id="@+id/editableTagsView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:imeOptions="actionDone"
@@ -22,13 +22,12 @@
         android:layout_height="wrap_content"
         android:text="Suggested tags" />
 
-    <com.qwissroll.statement.view.TagTokenTextView
-        android:id="@+id/suggestedTags"
+    <com.qwissroll.statement.view.TagSelectView
+        android:id="@+id/selectableTagsView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:imeOptions="actionDone"
         android:inputType="textMultiLine"
         android:backgroundTint="@android:color/transparent"/>
-
 
 </LinearLayout>

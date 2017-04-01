@@ -22,27 +22,34 @@
             android:name=".activity.ImageDetailActivity"
             android:label="@string/title_activity_image_detail"
             android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.StyleActivity"
             android:label="@string/title_activity_style"
             android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.SearchActivity"
             android:label="@string/title_activity_search"
             android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.SearchResultsActivity"
             android:label="@string/title_activity_search"
             android:parentActivityName=".activity.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.ShareActivity"></activity>
-        
+        <activity
+            android:name=".activity.ShareActivity"
+            android:label="@string/title_activity_image_detail"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <provider
-            android:authorities="com.qwissroll.statement.fileprovider"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.qwissroll.statement.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
