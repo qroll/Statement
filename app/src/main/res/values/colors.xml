@@ -4,9 +4,10 @@
     <color name="colorPrimaryDark">#455A64</color>
     <color name="colorAccent">#FF5722</color>
     <color name="colorGrey">#EEEEEE</color>
+    <color name="colorUnselected">#AAAAAA</color>
     <color name="colorLike">#C62828</color>
-    <color name="unselected">#EEEEEE</color>
-    <color name="selected">#757575</color>
+    <color name="tagUnselected">#EEEEEE</color>
+    <color name="tagSelected">#757575</color>
     <color name="textOnUnselected">#000000</color>
     <color name="textOnSelected">#FFFFFF</color>
 </resources>

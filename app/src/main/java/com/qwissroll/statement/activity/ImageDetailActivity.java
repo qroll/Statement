@@ -36,21 +36,25 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        Intent i = getIntent();
+        int itemId = i.getIntExtra("itemId", 0);
+
+        OutfitDataManager outfitDataManager = OutfitDataManager.getInstance();
+        final DashboardItem item = outfitDataManager.get(itemId);
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setSelected(item.isLiked());
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                boolean isLiked = !item.isLiked();
+                item.setLiked(isLiked);
+                fab.setSelected(isLiked);
             }
         });
 
-        Intent i = getIntent();
-
-        int itemId = i.getIntExtra("itemId", 0);
         TextView text = (TextView) findViewById(R.id.testText);
         text.setText("You selected " + itemId);
-        DashboardItem item = OutfitDataManager.getInstance().get(itemId);
 
         getSupportActionBar().setTitle(item.getItemName());
 
