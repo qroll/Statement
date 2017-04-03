@@ -5,13 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.qwissroll.statement.pojo.DetailItem;
 
 import java.util.ArrayList;
 
@@ -71,8 +67,10 @@ public class OutfitItemAdapter extends RecyclerView.Adapter<OutfitItemAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         Context context = holder.mImageView.getContext();
         // set image
+        holder.mImageView.layout(0, 0, 0, 0);
         int id = context.getResources().getIdentifier("_item_" + getItem(position), "drawable", context.getPackageName());
-        Glide.with(context).load(id).into(holder.mImageView);
+        //Glide.with(context).load(id).into(holder.mImageView);
+        holder.mImageView.setImageResource(id);
     }
 
     // allows clicks events to be caught
