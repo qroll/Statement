@@ -53,9 +53,6 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
             }
         });
 
-        TextView text = (TextView) findViewById(R.id.testText);
-        text.setText("You selected " + itemId);
-
         getSupportActionBar().setTitle(item.getItemName());
 
         String imageSource = "ootd_" + itemId;
@@ -79,7 +76,6 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
             input.requestFocus();
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         } else {
-            text.requestFocus();
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         }
     }
