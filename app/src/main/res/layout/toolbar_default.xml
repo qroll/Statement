@@ -8,10 +8,13 @@
     app:popupTheme="@style/AppTheme.PopupOverlay">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/app_name" />
+        android:text="@string/app_name"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/app_bar_title" />
 
     <ImageButton
         android:layout_width="@dimen/app_bar_icon"

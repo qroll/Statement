@@ -2,6 +2,7 @@ package com.qwissroll.statement.activity;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +34,11 @@ public class StyleResultsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // set title font
+        TextView title = (TextView) findViewById(R.id.title);
+        Typeface typeface = Typeface.createFromAsset(getAssets(),
+                "fonts/playfairdisplaysc_regular.ttf");
+        title.setTypeface(typeface);
 
         // init outfit carousel
         HorizontalInfiniteCycleViewPager carousel = (HorizontalInfiniteCycleViewPager) findViewById(R.id.carousel);

@@ -8,6 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@string/font"
         android:text="@string/tag_input" />
 
     <com.qwissroll.statement.view.EditableTagInputView
@@ -20,6 +21,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@string/font"
         android:text="@string/tag_suggest" />
 
     <com.qwissroll.statement.view.TagSelectView

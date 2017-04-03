@@ -2,6 +2,7 @@ package com.qwissroll.statement.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,10 +31,17 @@ public class SearchResultsActivity extends AppCompatActivity implements Dashboar
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
+
+        // init toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // set title font
+        TextView title = (TextView) findViewById(R.id.title);
+        Typeface typeface = Typeface.createFromAsset(getAssets(),
+                "fonts/playfairdisplaysc_regular.ttf");
+        title.setTypeface(typeface);
 
         Intent i = getIntent();
         ArrayList<String> searchTags = i.getStringArrayListExtra("searchTags");

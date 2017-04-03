@@ -2,6 +2,7 @@ package com.qwissroll.statement.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qwissroll.statement.DashboardItemAdapter;
@@ -49,6 +51,11 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // set title font
+        TextView title = (TextView) findViewById(R.id.title);
+        Typeface typeface = Typeface.createFromAsset(getAssets(),
+                "fonts/playfairdisplaysc_regular.ttf");
+        title.setTypeface(typeface);
 
         // init bottom nav bar
         BottomNavigationView bottomNavigationView = (BottomNavigationView)

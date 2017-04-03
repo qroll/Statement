@@ -2,6 +2,7 @@ package com.qwissroll.statement.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.qwissroll.statement.StyleFormalSliderFragment;
 import com.qwissroll.statement.R;
@@ -40,6 +42,11 @@ public class StyleActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // set title font
+        TextView title = (TextView) findViewById(R.id.title);
+        Typeface typeface = Typeface.createFromAsset(getAssets(),
+                "fonts/playfairdisplaysc_regular.ttf");
+        title.setTypeface(typeface);
 
         final Button doneBtn = (Button) findViewById(R.id.doneBtn);
         doneBtn.setVisibility(View.INVISIBLE);

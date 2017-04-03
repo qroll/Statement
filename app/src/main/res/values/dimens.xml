@@ -9,4 +9,5 @@
     <dimen name="tag_padding_vertical">4dp</dimen>
     <dimen name="app_bar_icon">24dp</dimen>
     <dimen name="h1">24sp</dimen>
+    <dimen name="app_bar_title">18sp</dimen>
 </resources>
