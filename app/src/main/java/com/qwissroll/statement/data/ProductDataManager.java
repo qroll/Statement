@@ -19,14 +19,14 @@ public class ProductDataManager {
         items = new HashMap<Integer, ArrayList<DetailItem>>();
 
         ArrayList<DetailItem> first = new ArrayList<DetailItem>();
-        first.add(new DetailItem(1, "Embroidered Jacket", "aaa", false));
-        first.add(new DetailItem(2, "White button-up shirt", "aaa", false));
-        first.add(new DetailItem(3, "Blue jeans", "aaa", false));
+        first.add(new DetailItem(12, "Embroidered Jacket", "aaa", false));
+        first.add(new DetailItem(15, "White button-up shirt", "aaa", false));
+        first.add(new DetailItem(23, "Blue jeans", "aaa", false));
         items.put(1, first);
 
         ArrayList<DetailItem> second = new ArrayList<DetailItem>();
-        second.add(new DetailItem(4, "Hijab", "aaa", false));
-        second.add(new DetailItem(5, "Lace top", "aaa", false));
+        second.add(new DetailItem(4, "Tudung", "aaa", false));
+        second.add(new DetailItem(18, "Lace dress", "aaa", false));
         items.put(2, second);
 
         ArrayList<DetailItem> third = new ArrayList<DetailItem>();

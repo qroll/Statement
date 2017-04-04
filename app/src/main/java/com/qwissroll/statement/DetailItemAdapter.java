@@ -80,7 +80,7 @@ public class DetailItemAdapter extends RecyclerView.Adapter<DetailItemAdapter.Vi
         Context context = holder.mImageView.getContext();
         DetailItem tag = mTags.get(position);
         // set image
-        int id = context.getResources().getIdentifier("p150x150", "drawable", context.getPackageName());
+        int id = context.getResources().getIdentifier("_item_" + tag.getItemId(), "drawable", context.getPackageName());
         Glide.with(context).load(id).into(holder.mImageView);
         // set name
         holder.mTextNameView.setText(tag.getItemName());
