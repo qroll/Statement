@@ -18,6 +18,10 @@ import android.widget.Toast;
 
 import com.qwissroll.statement.DashboardItemAdapter;
 import com.qwissroll.statement.R;
+import com.qwissroll.statement.data.FemaleOutfitDataManager;
+import com.qwissroll.statement.data.FemaleProductDataManager;
+import com.qwissroll.statement.data.MaleOutfitDataManager;
+import com.qwissroll.statement.data.MaleProductDataManager;
 import com.qwissroll.statement.data.OutfitDataManager;
 import com.qwissroll.statement.data.ProductDataManager;
 import com.qwissroll.statement.pojo.DashboardItem;
@@ -116,7 +120,8 @@ public class MainActivity extends AppCompatActivity
      */
 
     public void onItemImageClick(View view, int position) {
-        dispatchItemDetailActivity(position + 1, REQUEST_CODE_DEFAULT);
+        int itemId = dashboardItemAdapter.getItem(position).getItemId();
+        dispatchItemDetailActivity(itemId, REQUEST_CODE_DEFAULT);
     }
 
     public void onItemLikeClick(View view, int position) {
@@ -130,7 +135,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onItemCommentClick(View view, int position) {
-        dispatchItemDetailActivity(position + 1, REQUEST_CODE_ITEM_DETAIL_COMMENT);
+        int itemId = dashboardItemAdapter.getItem(position).getItemId();
+        dispatchItemDetailActivity(itemId, REQUEST_CODE_ITEM_DETAIL_COMMENT);
     }
 
     /*

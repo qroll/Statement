@@ -12,36 +12,16 @@ import java.util.Map;
 
 public class ProductDataManager {
 
-    private static Map<Integer, ArrayList<DetailItem>> items;
-    private static ProductDataManager instance;
+    protected static Map<Integer, ArrayList<DetailItem>> items;
+    protected static ProductDataManager instance;
 
-    private ProductDataManager() {
+    protected ProductDataManager() {
         items = new HashMap<Integer, ArrayList<DetailItem>>();
-
-        ArrayList<DetailItem> first = new ArrayList<DetailItem>();
-        first.add(new DetailItem(15, "White button-up shirt", "", false));
-        first.add(new DetailItem(23, "Blue jeans", "", false));
-        first.add(new DetailItem(12, "Embroidered Jacket", "", false));
-        items.put(1, first);
-
-        ArrayList<DetailItem> second = new ArrayList<DetailItem>();
-        second.add(new DetailItem(4, "Tudung", "aaa", false));
-        second.add(new DetailItem(18, "Lace dress", "aaa", false));
-        items.put(2, second);
-
-        ArrayList<DetailItem> third = new ArrayList<DetailItem>();
-        third.add(new DetailItem(6, "Free Spirit Top", "aaa", false));
-        items.put(3, third);
-
-        ArrayList<DetailItem> fourth = new ArrayList<DetailItem>();
-        fourth.add(new DetailItem(7, "Checkered shirt", "aaa", false));
-        fourth.add(new DetailItem(8, "Black jeans", "aaa", false));
-        items.put(4, fourth);
     }
 
     public static ProductDataManager getInstance() {
         if (instance == null) {
-            instance = new ProductDataManager();
+            instance = new FemaleProductDataManager();
         }
         return instance;
     }

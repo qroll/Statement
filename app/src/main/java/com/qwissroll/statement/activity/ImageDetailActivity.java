@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import com.qwissroll.statement.DetailItemAdapter;
 import com.qwissroll.statement.R;
+import com.qwissroll.statement.data.MaleOutfitDataManager;
+import com.qwissroll.statement.data.MaleProductDataManager;
 import com.qwissroll.statement.data.OutfitDataManager;
 import com.qwissroll.statement.data.ProductDataManager;
 import com.qwissroll.statement.pojo.DashboardItem;
@@ -43,7 +45,7 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
         Intent i = getIntent();
         int itemId = i.getIntExtra("itemId", 0);
 
-        OutfitDataManager outfitDataManager = OutfitDataManager.getInstance();
+        OutfitDataManager outfitDataManager = MaleOutfitDataManager.getInstance();
         final DashboardItem item = outfitDataManager.get(itemId);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -70,7 +72,7 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
         ImageView image = (ImageView) findViewById(R.id.image);
         image.setImageResource(id);
 
-        ProductDataManager productDataManager = ProductDataManager.getInstance();
+        ProductDataManager productDataManager = MaleProductDataManager.getInstance();
         ArrayList<DetailItem> productList = productDataManager.get(itemId);
 
         RecyclerView productListView = (RecyclerView) findViewById(R.id.productList);
