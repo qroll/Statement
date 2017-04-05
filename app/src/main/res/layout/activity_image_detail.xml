@@ -87,6 +87,7 @@
             android:layout_centerVertical="true"
             android:layout_margin="16dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:onClick="onCommentClick"
             android:scaleType="fitXY"
             android:src="@drawable/ic_action_send"
             android:tint="@android:color/white" />

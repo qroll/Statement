@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity
     public void dispatchItemDetailActivity(int itemId, int requestCode) {
         Intent intent = new Intent(this, ImageDetailActivity.class);
         intent.putExtra("itemId", itemId);
+        intent.putExtra("isComment", requestCode == REQUEST_CODE_ITEM_DETAIL_COMMENT);
         startActivityForResult(intent, requestCode);
     }
 
