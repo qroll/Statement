@@ -68,26 +68,27 @@
             android:id="@+id/commentInput"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:paddingRight="@dimen/button"
-            android:background="@color/colorGrey"
-            android:hint="Comment"
+            android:layout_centerVertical="true"
+            android:background="@color/colorPrimary"
+            android:hint="Leave a comment"
             android:imeOptions="actionDone"
             android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
-            android:padding="8dp"
-            android:paddingLeft="@dimen/button" />
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#dfdfdf" />
 
         <ImageButton
-            android:layout_width="@dimen/button"
-            android:layout_height="@dimen/button"
-            android:layout_margin="8dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentBottom="true"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_alignRight="@id/commentInput"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_centerVertical="true"
+            android:layout_margin="16dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:scaleType="fitXY"
             android:src="@drawable/ic_action_send"
-            android:tint="@color/cardview_dark_background" />
+            android:tint="@android:color/white" />
     </RelativeLayout>
 </RelativeLayout>

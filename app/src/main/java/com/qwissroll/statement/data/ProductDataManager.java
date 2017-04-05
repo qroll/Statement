@@ -19,9 +19,9 @@ public class ProductDataManager {
         items = new HashMap<Integer, ArrayList<DetailItem>>();
 
         ArrayList<DetailItem> first = new ArrayList<DetailItem>();
-        first.add(new DetailItem(12, "Embroidered Jacket", "aaa", false));
-        first.add(new DetailItem(15, "White button-up shirt", "aaa", false));
-        first.add(new DetailItem(23, "Blue jeans", "aaa", false));
+        first.add(new DetailItem(15, "White button-up shirt", "", false));
+        first.add(new DetailItem(23, "Blue jeans", "", false));
+        first.add(new DetailItem(12, "Embroidered Jacket", "", false));
         items.put(1, first);
 
         ArrayList<DetailItem> second = new ArrayList<DetailItem>();

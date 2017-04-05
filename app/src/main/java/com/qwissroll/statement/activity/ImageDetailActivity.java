@@ -1,7 +1,9 @@
 package com.qwissroll.statement.activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -53,7 +55,13 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
             }
         });
 
-        getSupportActionBar().setTitle(item.getItemName());
+        getSupportActionBar().setTitle(item.getItemName().toLowerCase());
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(),
+                "fonts/playfairdisplaysc_regular.ttf");
+        CollapsingToolbarLayout toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        toolbarLayout.setExpandedTitleTypeface(typeface);
+        toolbarLayout.setCollapsedTitleTypeface(typeface);
 
         String imageSource = "ootd_" + itemId;
         int id = getResources().getIdentifier(imageSource, "drawable", getPackageName());

@@ -51,7 +51,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter<DashboardItemAdap
         int id = context.getResources().getIdentifier("ootd_" + item.getItemId(), "drawable", context.getPackageName());
         holder.mImageView.setImageDrawable(null);
         Glide.with(context).load(id).into(holder.mImageView);
-        holder.mButtonLike.setSelected(item.isLiked());
+        holder.mButtonLike.setActivated(item.isLiked());
         holder.mTextComment.setText("" + item.getComments().size());
         holder.mTextLike.setText("" + item.getLikes());
     }
@@ -62,7 +62,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter<DashboardItemAdap
             onBindViewHolder(holder, position);
         } else {
             final DashboardItem item = mItems.get(position);
-            holder.mButtonLike.setSelected(item.isLiked());
+            holder.mButtonLike.setActivated(item.isLiked());
             holder.mTextComment.setText("" + item.getComments().size());
             holder.mTextLike.setText("" + item.getLikes());
         }
@@ -122,7 +122,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter<DashboardItemAdap
                     case R.id.button_like:
                         mClickListener.onItemLikeClick(view, getAdapterPosition());
                         DashboardItem tag = mItems.get(getAdapterPosition());
-                        mButtonLike.setSelected(tag.isLiked());
+                        mButtonLike.setActivated(tag.isLiked());
                         notifyItemChanged(getAdapterPosition(), PAYLOAD_BUTTON_LIKE_CLICKED);
                         break;
                     case R.id.button_comment:
