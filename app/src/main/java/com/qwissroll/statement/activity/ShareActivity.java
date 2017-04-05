@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -14,7 +14,18 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.qwissroll.statement.R;
 
@@ -34,12 +45,57 @@ public class ShareActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
 
+        // init toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // set title font
+        TextView title = (TextView) findViewById(R.id.title);
+        Typeface typeface = Typeface.createFromAsset(getAssets(),
+                "fonts/playfairdisplaysc_regular.ttf");
+        title.setTypeface(typeface);
+
+        final RelativeLayout rl = (RelativeLayout) findViewById(R.id.imageContainer);
+        final ImageView photo = (ImageView) findViewById(R.id.photo);
+        photo.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    int[] viewCoords = new int[2];
+                    photo.getLocationOnScreen(viewCoords);
+
+                    int x = Math.max((int) event.getX() - viewCoords[0], 0);
+                    int y = Math.max((int) event.getY() - viewCoords[1], 0);
+
+                    LinearLayout layout = (LinearLayout) LayoutInflater.from(v.getContext())
+                            .inflate(R.layout.share_tag, null);
+
+                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    params.leftMargin = x;
+                    params.topMargin = y;
+                    rl.addView(layout, params);
+
+                    EditText editText = (EditText) layout.findViewById(R.id.editText);
+                    editText.requestFocus();
+
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(editText, 0);
+                }
+                return true;
+            }
+        });
+
+        /*
         if (performCameraPermissionCheck()) {
             openCameraActivity();
         }
-
+        */
     }
 
+    public void onShareClick(View view) {
+        finish();
+    }
 
     public void openCameraActivity() {
         File photoFile = null;
@@ -68,8 +124,6 @@ public class ShareActivity extends AppCompatActivity {
                 Bitmap photo = BitmapFactory.decodeFile(currentPhotoPath);
                 ImageView imageView = (ImageView) findViewById(R.id.photo);
                 imageView.setImageBitmap(photo);
-            } else {
-                finish();
             }
         }
     }
