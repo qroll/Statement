@@ -17,15 +17,15 @@ public class MaleStyleDataManager extends StyleDataManager {
         outfit1.addItems(10, 23, 6);
         outfits.add(outfit1);
 
-        Outfit outfit2 = new Outfit("Stripes", "#A1DBB2");
+        Outfit outfit2 = new Outfit("Stripes", "#AAAAAA");
         outfit2.addItems(17, 22);
         outfits.add(outfit2);
 
-        Outfit outfit3 = new Outfit("Quirky", "#273E62");
+        Outfit outfit3 = new Outfit("Blue", "#273E62");
         outfit3.addItems(30, 22);
         outfits.add(outfit3);
 
-        Outfit outfit4 = new Outfit("Bold", "#00A1CF");
+        Outfit outfit4 = new Outfit("Bold", "#C24F3A");
         outfit4.addItems(14, 21);
         outfits.add(outfit4);
     }
