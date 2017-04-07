@@ -59,6 +59,7 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
             }
         });
 
+        // set outfit title in toolbar
         getSupportActionBar().setTitle(item.getItemName().toLowerCase());
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),
