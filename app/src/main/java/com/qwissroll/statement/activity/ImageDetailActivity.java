@@ -105,9 +105,7 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
     @Override
     public void onItemClick(View view, int position) {
         DetailItem tag = adapter.getItem(position);
-        tag.setAdded(true);
-        Button button = (Button) view.findViewById(R.id.button_add);
-        button.setEnabled(false);
+        tag.setAdded(!tag.isAdded());
     }
 
 }

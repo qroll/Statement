@@ -21,21 +21,21 @@ public class FemaleProductDataManager extends ProductDataManager {
         items.put(1, first);
 
         ArrayList<DetailItem> second = new ArrayList<DetailItem>();
-        second.add(new DetailItem(4, "Tudung", "aaa", false));
-        second.add(new DetailItem(18, "Lace dress", "aaa", false));
+        second.add(new DetailItem(4, "Tudung", "", false));
+        second.add(new DetailItem(18, "Lace dress", "", false));
         items.put(2, second);
 
         ArrayList<DetailItem> third = new ArrayList<DetailItem>();
-        third.add(new DetailItem(6, "Free Spirit Top", "aaa", false));
+        third.add(new DetailItem(6, "Free Spirit Top", "", false));
         items.put(3, third);
 
         ArrayList<DetailItem> fourth = new ArrayList<DetailItem>();
-        fourth.add(new DetailItem(7, "Checkered shirt", "aaa", false));
-        fourth.add(new DetailItem(8, "Black jeans", "aaa", false));
+        fourth.add(new DetailItem(7, "Checkered shirt", "", false));
+        fourth.add(new DetailItem(8, "Black jeans", "", false));
         items.put(4, fourth);
 
         ArrayList<DetailItem> fifth = new ArrayList<DetailItem>();
-        fifth.add(new DetailItem(7, "Blue dress", "aaa", false));
+        fifth.add(new DetailItem(7, "Blue dress", "", false));
         items.put(6, fifth);
     }
 
