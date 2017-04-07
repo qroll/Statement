@@ -116,7 +116,6 @@ public class ShareActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
@@ -127,7 +126,6 @@ public class ShareActivity extends AppCompatActivity {
             }
         }
     }
-
 
     private boolean performCameraPermissionCheck() {
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);

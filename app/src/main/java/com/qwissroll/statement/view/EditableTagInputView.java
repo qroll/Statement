@@ -16,9 +16,14 @@ import com.tokenautocomplete.TokenCompleteTextView;
  * Created by qruol on 24/3/2017.
  */
 
-public class EditableTagInputView extends TokenCompleteTextView<String> {
+public class EditableTagInputView extends TokenCompleteTextView<String>
+        implements TokenCompleteTextView.TokenListener {
+
+    private OnTokenRemovedListener mListener;
+
     public EditableTagInputView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setTokenListener(this);
     }
 
     @Override
@@ -42,6 +47,27 @@ public class EditableTagInputView extends TokenCompleteTextView<String> {
     public void setSelected(boolean selected) {
         super.setSelected(selected);
         setCompoundDrawablesWithIntrinsicBounds(0, 0, selected ? R.drawable.ic_action_close : 0, 0);
+    }
+
+    @Override
+    public void onTokenAdded(Object token) {
+
+    }
+
+    @Override
+    public void onTokenRemoved(Object token) {
+        removeObject((String) token);
+        if (mListener != null) {
+            mListener.removeInputTag((String) token);
+        }
+    }
+
+    public void setListener(OnTokenRemovedListener l) {
+        mListener = l;
+    }
+
+    public interface OnTokenRemovedListener {
+        void removeInputTag(String token);
     }
 
 }

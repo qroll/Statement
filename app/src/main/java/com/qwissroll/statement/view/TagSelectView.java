@@ -18,9 +18,14 @@ import com.tokenautocomplete.TokenCompleteTextView;
  * Created by qruol on 24/3/2017.
  */
 
-public class TagSelectView extends TokenCompleteTextView<String> {
+public class TagSelectView extends TokenCompleteTextView<String>
+        implements TokenCompleteTextView.TokenListener {
+
+    private OnTokenRemovedListener mListener;
+
     public TagSelectView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setTokenListener(this);
     }
 
     @Override
@@ -65,4 +70,24 @@ public class TagSelectView extends TokenCompleteTextView<String> {
         return true;
     }
 
+    @Override
+    public void onTokenAdded(Object token) {
+
+    }
+
+    @Override
+    public void onTokenRemoved(Object token) {
+        removeObject((String) token);
+        if (mListener != null) {
+            mListener.removeSuggestedTag((String) token);
+        }
+    }
+
+    public void setListener(OnTokenRemovedListener l) {
+        mListener = l;
+    }
+
+    public interface OnTokenRemovedListener {
+        void removeSuggestedTag(String token);
+    }
 }

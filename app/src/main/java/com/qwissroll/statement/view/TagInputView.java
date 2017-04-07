@@ -2,6 +2,7 @@ package com.qwissroll.statement.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.inputmethod.EditorInfo;
@@ -22,7 +23,8 @@ import java.util.List;
  */
 
 public class TagInputView extends RelativeLayout
-        implements TokenCompleteTextView.TokenListener {
+        implements TagSelectView.OnTokenRemovedListener,
+                   EditableTagInputView.OnTokenRemovedListener {
 
     private ArrayList<String> suggestedTags; // tags that can be selected directly
     private ArrayList<String> autocompleteTags; // tags that are suggested when user begins typing
@@ -83,15 +85,8 @@ public class TagInputView extends RelativeLayout
         selectableTagsView.setTokenClickStyle(TokenCompleteTextView.TokenClickStyle.Delete);
         selectableTagsView.allowCollapse(false);
 
-        selectableTagsView.setTokenListener(this);
-    }
-
-    public void addSuggestedTag(String text) {
-        selectableTagsView.removeObject(text);
-        editableTagsView.addObject(text);
-        editableTagsView.requestFocus();
-        InputMethodManager imm = (InputMethodManager) editableTagsView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(editableTagsView, InputMethodManager.SHOW_IMPLICIT);
+        editableTagsView.setListener(this);
+        selectableTagsView.setListener(this);
     }
 
     public ArrayList<String> getTags() {
@@ -99,12 +94,17 @@ public class TagInputView extends RelativeLayout
     }
 
     @Override
-    public void onTokenAdded(Object token) {
+    public void removeSuggestedTag(String token) {
+        editableTagsView.addObject(token);
+        selectableTagsView.removeObject(token);
     }
 
     @Override
-    public void onTokenRemoved(Object token) {
-        addSuggestedTag((String) token);
+    public void removeInputTag(String token) {
+        if (suggestedTags.contains(token)) {
+            selectableTagsView.addObject(token);
+        }
+        editableTagsView.removeObject(token);
         if (mTagChangeListener != null) {
             mTagChangeListener.onTagChange(editableTagsView.getObjects());
         }
