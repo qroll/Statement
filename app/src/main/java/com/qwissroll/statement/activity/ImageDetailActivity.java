@@ -5,26 +5,24 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.qwissroll.statement.DetailItemAdapter;
+import com.qwissroll.statement.adapter.CommentAdapter;
+import com.qwissroll.statement.adapter.DetailItemAdapter;
 import com.qwissroll.statement.R;
 import com.qwissroll.statement.data.MaleOutfitDataManager;
 import com.qwissroll.statement.data.MaleProductDataManager;
 import com.qwissroll.statement.data.OutfitDataManager;
 import com.qwissroll.statement.data.ProductDataManager;
+import com.qwissroll.statement.pojo.Comment;
 import com.qwissroll.statement.pojo.DashboardItem;
 import com.qwissroll.statement.pojo.DetailItem;
 
@@ -32,7 +30,8 @@ import java.util.ArrayList;
 
 public class ImageDetailActivity extends AppCompatActivity implements DetailItemAdapter.ItemClickListener {
 
-    DetailItemAdapter adapter;
+    DetailItemAdapter detailItemAdapter;
+    CommentAdapter commentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +77,16 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
 
         RecyclerView productListView = (RecyclerView) findViewById(R.id.productList);
         productListView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new DetailItemAdapter(productList);
-        adapter.setClickListener(this);
-        productListView.setAdapter(adapter);
+        detailItemAdapter = new DetailItemAdapter(productList);
+        detailItemAdapter.setClickListener(this);
+        productListView.setAdapter(detailItemAdapter);
         productListView.setNestedScrollingEnabled(false);
+
+        RecyclerView commentListView = (RecyclerView) findViewById(R.id.commentList);
+        commentListView.setLayoutManager(new LinearLayoutManager(this));
+        commentAdapter = new CommentAdapter(item.getComments());
+        commentListView.setAdapter(commentAdapter);
+        commentListView.setNestedScrollingEnabled(false);
 
         boolean isComment = i.getBooleanExtra("isComment", false);
         if (isComment) {
@@ -104,7 +109,7 @@ public class ImageDetailActivity extends AppCompatActivity implements DetailItem
 
     @Override
     public void onItemClick(View view, int position) {
-        DetailItem tag = adapter.getItem(position);
+        DetailItem tag = detailItemAdapter.getItem(position);
         tag.setAdded(!tag.isAdded());
     }
 

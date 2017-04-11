@@ -7,6 +7,7 @@
     <ImageView
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:onClick="removeTag"
         android:scaleType="fitXY"
         android:src="@drawable/ic_action_label" />
 
@@ -14,12 +15,12 @@
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:scrollHorizontally="true"
+        android:background="@android:color/transparent"
         android:ellipsize="end"
         android:inputType="textNoSuggestions"
-        android:background="@android:color/transparent"
         android:maxLength="50"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
         android:textColor="@android:color/white" />
 
 </LinearLayout>

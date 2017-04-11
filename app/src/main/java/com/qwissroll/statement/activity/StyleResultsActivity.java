@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
-import com.qwissroll.statement.OutfitItemAdapter;
+import com.qwissroll.statement.adapter.OutfitItemAdapter;
 import com.qwissroll.statement.R;
 import com.qwissroll.statement.data.StyleDataManager;
 import com.qwissroll.statement.pojo.Outfit;

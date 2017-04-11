@@ -1,4 +1,4 @@
-package com.qwissroll.statement;
+package com.qwissroll.statement.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.qwissroll.statement.R;
 import com.qwissroll.statement.pojo.DetailItem;
 
 import java.util.ArrayList;

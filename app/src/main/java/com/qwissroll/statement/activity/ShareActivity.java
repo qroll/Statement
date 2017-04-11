@@ -57,16 +57,13 @@ public class ShareActivity extends AppCompatActivity {
         title.setTypeface(typeface);
 
         final RelativeLayout rl = (RelativeLayout) findViewById(R.id.imageContainer);
-        final ImageView photo = (ImageView) findViewById(R.id.photo);
+        ImageView photo = (ImageView) findViewById(R.id.photo);
         photo.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    int[] viewCoords = new int[2];
-                    photo.getLocationOnScreen(viewCoords);
-
-                    int x = Math.max((int) event.getX() - viewCoords[0], 0);
-                    int y = Math.max((int) event.getY() - viewCoords[1], 0);
+                    int x = Math.max((int) event.getX() - v.getLeft(), 0);
+                    int y = Math.max((int) event.getY() - v.getTop(), 0);
 
                     LinearLayout layout = (LinearLayout) LayoutInflater.from(v.getContext())
                             .inflate(R.layout.share_tag, null);
@@ -93,7 +90,12 @@ public class ShareActivity extends AppCompatActivity {
         */
     }
 
+    public void removeTag(View view) {
+        ((ViewGroup) view.getParent().getParent()).removeView((View) view.getParent());
+    }
+
     public void onShareClick(View view) {
+        setResult(RESULT_OK);
         finish();
     }
 

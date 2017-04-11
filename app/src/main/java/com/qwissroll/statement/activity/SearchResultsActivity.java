@@ -11,12 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.flexbox.FlexboxLayout;
-import com.qwissroll.statement.DashboardItemAdapter;
+import com.qwissroll.statement.adapter.DashboardItemAdapter;
 import com.qwissroll.statement.R;
 import com.qwissroll.statement.data.OutfitDataManager;
 import com.qwissroll.statement.pojo.DashboardItem;
@@ -48,6 +46,9 @@ public class SearchResultsActivity extends AppCompatActivity implements Dashboar
 
         OutfitDataManager outfitDataManager = OutfitDataManager.getInstance();
         ArrayList<DashboardItem> dashboardItems = outfitDataManager.getAllWithAnyTags(searchTags);
+        if (dashboardItems.isEmpty()) {
+            dashboardItems = outfitDataManager.getAll();
+        }
 
         RecyclerView dashboard = (RecyclerView) findViewById(R.id.dashboard);
         adapter = new DashboardItemAdapter(dashboardItems);

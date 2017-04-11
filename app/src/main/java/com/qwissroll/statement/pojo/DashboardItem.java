@@ -56,7 +56,13 @@ public class DashboardItem {
     }
 
     public boolean isTaggedWith(String tag) {
-        return itemTags.contains(tag.toLowerCase());
+        String tagInLowerCase = tag.toLowerCase();
+        for (String itemTag : itemTags) {
+            if (itemTags.contains(tagInLowerCase) || tagInLowerCase.contains(itemTag)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<Comment> getComments() {

@@ -16,12 +16,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.qwissroll.statement.DashboardItemAdapter;
+import com.qwissroll.statement.adapter.DashboardItemAdapter;
 import com.qwissroll.statement.R;
-import com.qwissroll.statement.data.FemaleOutfitDataManager;
-import com.qwissroll.statement.data.FemaleProductDataManager;
-import com.qwissroll.statement.data.MaleOutfitDataManager;
-import com.qwissroll.statement.data.MaleProductDataManager;
 import com.qwissroll.statement.data.OutfitDataManager;
 import com.qwissroll.statement.data.ProductDataManager;
 import com.qwissroll.statement.pojo.DashboardItem;
@@ -40,6 +36,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final int REQUEST_CODE_DEFAULT = 1;
     private static final int REQUEST_CODE_ITEM_DETAIL_COMMENT = 2;
+    private static final int REQUEST_CODE_SHARE = 3;
 
     OutfitDataManager outfitDataManager;
     ProductDataManager productDataManager;
@@ -71,6 +68,7 @@ public class MainActivity extends AppCompatActivity
                 public boolean onNavigationItemSelected(MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.action_profile:
+                            dispatchProfileActivity(null);
                             break;
                         case R.id.action_style:
                             dispatchStyleActivity(null);
@@ -155,6 +153,11 @@ public class MainActivity extends AppCompatActivity
 
     public void dispatchShareActivity(View view) {
         Intent intent = new Intent(this, ShareActivity.class);
+        startActivityForResult(intent, REQUEST_CODE_SHARE);
+    }
+
+    public void dispatchProfileActivity(View view) {
+        Intent intent = new Intent(this, ProfileActivity.class);
         startActivityForResult(intent, REQUEST_CODE_DEFAULT);
     }
 
@@ -163,6 +166,17 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra("itemId", itemId);
         intent.putExtra("isComment", requestCode == REQUEST_CODE_ITEM_DETAIL_COMMENT);
         startActivityForResult(intent, requestCode);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_SHARE) {
+            if (resultCode == RESULT_OK) {
+                String message = "Photo shared!";
+                Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
     }
 
 }

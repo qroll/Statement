@@ -1,4 +1,4 @@
-package com.qwissroll.statement;
+package com.qwissroll.statement.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.qwissroll.statement.R;
 
 import java.util.ArrayList;
 
@@ -69,8 +70,8 @@ public class OutfitItemAdapter extends RecyclerView.Adapter<OutfitItemAdapter.Vi
         // set image
         holder.mImageView.layout(0, 0, 0, 0);
         int id = context.getResources().getIdentifier("_item_" + getItem(position), "drawable", context.getPackageName());
-        //Glide.with(context).load(id).into(holder.mImageView);
-        holder.mImageView.setImageResource(id);
+        Glide.with(context).load(id).into(holder.mImageView);
+        //holder.mImageView.setImageResource(id);
     }
 
     // allows clicks events to be caught

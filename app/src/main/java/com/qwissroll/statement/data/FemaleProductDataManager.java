@@ -21,7 +21,7 @@ public class FemaleProductDataManager extends ProductDataManager {
         items.put(1, first);
 
         ArrayList<DetailItem> second = new ArrayList<DetailItem>();
-        second.add(new DetailItem(4, "Tudung", "", false));
+        second.add(new DetailItem(35, "Tudung", "", false));
         second.add(new DetailItem(18, "Lace dress", "", false));
         items.put(2, second);
 
@@ -30,13 +30,20 @@ public class FemaleProductDataManager extends ProductDataManager {
         items.put(3, third);
 
         ArrayList<DetailItem> fourth = new ArrayList<DetailItem>();
-        fourth.add(new DetailItem(7, "Checkered shirt", "", false));
-        fourth.add(new DetailItem(8, "Black jeans", "", false));
+        fourth.add(new DetailItem(34, "Checkered shirt", "", false));
+        fourth.add(new DetailItem(32, "Black jeans", "", false));
         items.put(4, fourth);
 
         ArrayList<DetailItem> fifth = new ArrayList<DetailItem>();
-        fifth.add(new DetailItem(7, "Blue dress", "", false));
-        items.put(6, fifth);
+        fifth.add(new DetailItem(36, "Denim jacket", "", false));
+        items.put(12, fifth);
+
+        ArrayList<DetailItem> sixth = new ArrayList<DetailItem>();
+        sixth.add(new DetailItem(7, "Blue dress", "", false));
+        items.put(6, sixth);
+
+        ArrayList<DetailItem> seventh = new ArrayList<DetailItem>();
+        items.put(13, seventh);
     }
 
     public static ProductDataManager getInstance() {
