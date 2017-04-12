@@ -49,7 +49,7 @@
         <activity
             android:name=".activity.StyleResultsActivity"
             android:label="@string/title_activity_style_results"
-            android:parentActivityName=".activity.StyleActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.ProfileActivity"

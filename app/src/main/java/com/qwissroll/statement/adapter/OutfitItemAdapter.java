@@ -70,8 +70,8 @@ public class OutfitItemAdapter extends RecyclerView.Adapter<OutfitItemAdapter.Vi
         // set image
         holder.mImageView.layout(0, 0, 0, 0);
         int id = context.getResources().getIdentifier("_item_" + getItem(position), "drawable", context.getPackageName());
-        Glide.with(context).load(id).into(holder.mImageView);
-        //holder.mImageView.setImageResource(id);
+        //Glide.with(context).load(id).into(holder.mImageView);
+        holder.mImageView.setImageResource(id);
     }
 
     // allows clicks events to be caught
