@@ -32,6 +32,7 @@ import com.qwissroll.statement.R;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class ShareActivity extends AppCompatActivity {
@@ -62,8 +63,8 @@ public class ShareActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    int x = Math.max((int) event.getX() - v.getLeft(), 0);
-                    int y = Math.max((int) event.getY() - v.getTop(), 0);
+                    int x = (int) (event.getX() + v.getLeft());
+                    int y = (int) (event.getY() + v.getTop());
 
                     LinearLayout layout = (LinearLayout) LayoutInflater.from(v.getContext())
                             .inflate(R.layout.share_tag, null);

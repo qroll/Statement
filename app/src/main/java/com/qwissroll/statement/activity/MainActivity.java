@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity
 
         // init dashboard
         ArrayList<DashboardItem> dashboardItems = outfitDataManager.getAll();
+        DashboardItem toRemove = outfitDataManager.get(8);
+        dashboardItems.remove(toRemove);
 
         RecyclerView dashboard = (RecyclerView) findViewById(R.id.dashboard);
         dashboardItemAdapter = new DashboardItemAdapter(dashboardItems);

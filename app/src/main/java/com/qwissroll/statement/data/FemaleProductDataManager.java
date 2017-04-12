@@ -44,6 +44,9 @@ public class FemaleProductDataManager extends ProductDataManager {
 
         ArrayList<DetailItem> seventh = new ArrayList<DetailItem>();
         items.put(13, seventh);
+
+        ArrayList<DetailItem> eighth = new ArrayList<DetailItem>();
+        items.put(8, eighth);
     }
 
     public static ProductDataManager getInstance() {

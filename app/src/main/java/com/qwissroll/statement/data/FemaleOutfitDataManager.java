@@ -55,6 +55,12 @@ public class FemaleOutfitDataManager extends OutfitDataManager {
                 new ArrayList<>(Arrays.asList("casual", "bold", "hijab", "tudung", "checker", "pattern", "red", "long sleeved", "long-sleeved")));
         item7.setLikes(1);
         dashboardItems.put(13, item7);
+
+        DashboardItem item8 = new DashboardItem(8, "Museum trip", false,
+                new ArrayList<>(Arrays.asList("casual", "dress", "boots", "spring", "floral", "print", "pattern", "leggings")));
+        item8.setLikes(5);
+        dashboardItems.put(8, item8);
+
     }
 
     public static OutfitDataManager getInstance() {

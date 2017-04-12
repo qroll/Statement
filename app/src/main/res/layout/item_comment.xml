@@ -4,18 +4,20 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/text_margin">
 
-    <com.qwissroll.statement.view.SquareImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/comment_avatar"
-        android:layout_width="60dp"
-        android:layout_height="0dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY" />
+        android:layout_width="@dimen/avatar"
+        android:layout_height="@dimen/avatar"
+        app:civ_border_width="0dp" />
 
     <TextView
         android:id="@+id/comment_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/comment_avatar"
+        android:fontFamily="@string/font"
+        android:textStyle="bold"
         android:layout_marginLeft="@dimen/text_margin"
         android:layout_marginRight="@dimen/text_margin"
         android:layout_toRightOf="@id/comment_avatar"

@@ -100,7 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "PHOTOS";
+                    return "MY PHOTOS";
                 case 1:
                     return "WISHLIST";
             }

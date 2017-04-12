@@ -1,41 +1,92 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/productImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/_item_5" />
+    <RelativeLayout
+        android:padding="@dimen/text_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/productName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="@dimen/text_margin"
-        android:layout_marginRight="@dimen/text_margin"
-        android:layout_toRightOf="@id/productImage"
-        android:text="Dress" />
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/_item_28" />
 
-    <TextView
-        android:id="@+id/productDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/productName"
-        android:layout_marginLeft="@dimen/text_margin"
-        android:layout_marginRight="@dimen/text_margin"
-        android:layout_toRightOf="@id/productImage" />
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
+            android:layout_toRightOf="@id/productImage"
+            android:text="Striped knit sweater" />
 
-    <Button
-        android:id="@+id/button_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/productDescription"
-        android:layout_margin="@dimen/text_margin"
-        android:layout_toRightOf="@+id/productImage"
-        android:text="REMOVE FROM WISHLIST" />
+        <TextView
+            android:id="@+id/productDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productName"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
+            android:layout_toRightOf="@id/productImage" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productDescription"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_toRightOf="@+id/productImage"
+            android:text="REMOVE FROM WISHLIST" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:padding="@dimen/text_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/productImage2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/_item_16" />
+
+        <TextView
+            android:id="@+id/productName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
+            android:layout_toRightOf="@id/productImage2"
+            android:text="Pixel cat leggings" />
+
+        <TextView
+            android:id="@+id/productDescription2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productName2"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
+            android:layout_toRightOf="@id/productImage2" />
+
+        <Button
+            android:id="@+id/button_add2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productDescription2"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_toRightOf="@+id/productImage2"
+            android:text="REMOVE FROM WISHLIST" />
+
+    </RelativeLayout>
+
+</LinearLayout>
